@@ -12,6 +12,10 @@
 ---------------------------------------------
 
 ### 命令行签名
+签名工具是jdk提供。所以在执行下列命令前需要先安装jdk。并设置：
+
+    export PATH=$JAVA_HOME/bin:$PATH
+
 1. 生成密钥库(key store)文件
 
         l@l-Lenovo:/home/RabbitCommon$ keytool -genkey -alias RabbitCommon -keyalg RSA -validity 36500 -keystore RabbitCommon.keystore
@@ -62,11 +66,15 @@
 
    zipalign 确保所有的未压缩数据与特定字节对齐相对于文件，从而降低apk文件的大小。
 
-7. [参考](https://blog.csdn.net/u011974987/article/details/52415037)
+7. 参考
+
+- [Android中签名、证书、公钥密钥的概念及使用](https://blog.csdn.net/u011974987/article/details/52415037)
 
 ### Android studio 签名
 
-参考: https://developer.android.google.cn/studio/publish/app-signing.html
+- 参考
+
+- [为您的应用签名](https://developer.android.google.cn/studio/publish/app-signing.html)
 
 ### QtCreator 签名
 - 构建设置 -> Build android apk -> Create
