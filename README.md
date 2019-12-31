@@ -3,6 +3,7 @@
 
 作者：康林(kl222@126.com)
 
+- [Qt](qt/qt.md)
 - [Android 签名](android/Signature.md)
 - [自动化集成](ci/README.md)
   + [Travis](ci/travis/travis.md)
