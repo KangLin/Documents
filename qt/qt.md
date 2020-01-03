@@ -3,11 +3,34 @@
 作者：康林(kl222@126.com)
 -------------------------
 
+### 获得 qt 二进制执行程序
+- 系统自带的
+  + ubuntu
+    - 基本的
+
+        sudo apt-get install qttools5-dev qttools5-dev-tools \
+             qtbase5-dev qtbase5-dev-tools
+
+    - 模块
+      + libqt5serialport5-dev 
+      + qtmultimedia5-dev
+      + qtwebengine5-dev
+      + libqt5webkit5-dev
+      + qtdeclarative5-dev
+      + qtlocation5-dev
+      + qtpositioning5-dev
+      + qtpim5-dev
+      + qtquickcontrols2-5-dev
+      + qtscript5-dev
+      + libqt5texttospeech5-dev
+      + libqt5webchannel5-dev
+  + [launchpad](https://launchpad.net/~beineri)
+- [qt官网](http://download.qt.io/official_releases/qt/)
+
 ### qt install
-- 默认安装前缀。
+- 应用默认安装前缀。
   + qnx 安装到 /tmp 
   + android 安装到 / 
-  + unix 安装到 /usr
   + 其它安装到编译目录下的 install 目录下
 - 启动 desktop 文件。安装到 /usr/share/applications/ 目录下
 - 启动图标。安装到 /usr/share/pixmaps 目录下
@@ -18,7 +41,6 @@
         isEmpty(PREFIX) {
             qnx : PREFIX = /tmp
             else : android : PREFIX = /.
-            else : unix : PREFIX = /usr
             else : PREFIX = $$OUT_PWD/install
         }
         
