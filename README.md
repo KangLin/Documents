@@ -3,6 +3,8 @@
 
 作者：康林(kl222@126.com)
 
+- [Ubuntu](ubuntu/ubuntu.md)
+  - [launchpad](ubuntu/launchpad.md)
 - [Qt](qt/qt.md)
 - [Android 签名](android/Signature.md)
 - [自动化集成](ci/README.md)
