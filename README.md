@@ -10,3 +10,4 @@
 - [自动化集成](ci/README.md)
   + [Travis](ci/travis/travis.md)
   + [Appveyor](ci/appveyor/Appveyor.md)
+- [多媒体](multimedia/Multimedia.md)
