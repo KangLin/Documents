@@ -59,4 +59,15 @@
             INSTALLS += DESKTOP_FILE icon128
         }
 
+### qt 在　android　启动时白屏
+
+	#if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
+	    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	#endif
+
+	android启动时透明
+
+	#if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+	    QtAndroid::hideSplashScreen();
+	#endif
 
