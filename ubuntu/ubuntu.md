@@ -1,5 +1,7 @@
 # Ubuntu
+
 作者：康林(kl222@126.com)
+
 -------------------------
 
 ### [Ubuntu 文档](https://www.debian.org/doc/)
