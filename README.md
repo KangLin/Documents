@@ -14,3 +14,4 @@
 - [开源项目](complie/README.md)
 - [常用工具](opensource/Tools.md)
 - [常用开源工具](opensource/OpenSourceTools.md)
+- [AI](ai/ai.md)
