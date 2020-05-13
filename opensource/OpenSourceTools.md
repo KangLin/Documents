@@ -94,8 +94,10 @@ git clone https://github.com/arut/nginx-rtmp-module.git
   - EternalTerminal: https://github.com/MisterTea/EternalTerminal
   - qterminal: https://github.com/lxqt/qterminal
 
-- 串口助手: https://github.com/KangLin/SerialPortAssistant
+- [串口助手](https://github.com/KangLin/SerialPortAssistant)
 
 ### IM:
-- libnice: https://libnice.freedesktop.org/
+- [libnice:](https://libnice.freedesktop.org/) P2P 通信库
 
+### 思想导图工具
+- [xmind](https://github.com/xmindltd/xmind)
