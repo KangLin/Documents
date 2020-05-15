@@ -87,6 +87,18 @@ git clone https://github.com/arut/nginx-rtmp-module.git
   + eclipse：http://www.eclipse.org/
   + kdevelop：http://kdevelop.org/
 
+### Microsoft visual studio code 扩展
+- [Doxygen 产生工具](https://github.com/christophschlosser/doxdocgen)
+- [流程图工具](https://github.com/hediet/vscode-drawio)
+- [Markdown 工具]
+  - [Markdown 工具](https://github.com/yzhang-gh/vscode-markdown)
+  - [vscode-markdown-extended](https://github.com/qjebbs/vscode-markdown-extended)
+  - [markdown checkbox](https://github.com/PKief/vscode-markdown-checkbox)
+  - [自动生成目录](https://github.com/AlanWalk/Markdown-TOC)
+  - [Markdown Emoji 图标](https://github.com/mjbvz/vscode-markdown-emoji)
+  - [markdown-pdf](https://github.com/yzane/vscode-markdown-pdf)
+
+
 ### 工具：
 - 终端：
   - terminal: https://github.com/microsoft/terminal
