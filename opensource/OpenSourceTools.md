@@ -92,9 +92,9 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - [流程图工具](https://github.com/hediet/vscode-drawio)
 - [Markdown 工具]
   - [Markdown 工具](https://github.com/yzhang-gh/vscode-markdown)
-  - [vscode-markdown-extended](https://github.com/qjebbs/vscode-markdown-extended)
+  - [vscode-markdown-extended](https://github.com/qjebbs/vscode-markdown-extended) https://marketplace.visualstudio.com/items?itemName=jebbs.markdown-extended
   - [markdown checkbox](https://github.com/PKief/vscode-markdown-checkbox)
-  - [自动生成目录](https://github.com/AlanWalk/Markdown-TOC)
+  - [自动生成目录](https://github.com/AlanWalk/Markdown-TOC) https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc
   - [Markdown Emoji 图标](https://github.com/mjbvz/vscode-markdown-emoji)
   - [markdown-pdf](https://github.com/yzane/vscode-markdown-pdf)
 
