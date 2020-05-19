@@ -122,3 +122,31 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 ### 思想导图工具
 - [xmind](https://github.com/xmindltd/xmind)
+
+### 制做u盘启动盘工具
+
+- [yumi](http://www.pendrivelinux.com/yumi-multiboot-usb-creator/)
+- [pendrivelinux](http://www.pendrivelinux.com/)
+- [Universal USB Installer](http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/)
+
+### 文件恢复
+- [cgsecurity](http://www.cgsecurity.org) [源码](git clone http://git.cgsecurity.org/testdisk.git)
+  + 数据恢复工具
+    - [TestDisk](https://www.cgsecurity.org/wiki/TestDisk)
+    - [PhotoRec](http://www.cgsecurity.org/wiki/PhotoRec)
+  + 密码恢复工具
+    - [coms 密码恢复](https://www.cgsecurity.org/wiki/CmosPwd)
+    - [LiloPwd](https://www.cgsecurity.org/wiki/LiloPwd)
+    - [Chntpw for Dos](https://www.cgsecurity.org/wiki/Chntpw_for_Dos)
+    - [重置Windows 2000, XP, 2003, Vista and 2008密码：](
+http://pogostick.net/~pnh/ntpasswd/) [代码](source_code/chntpw-source-140201.zip)
+    - [得到windows密码(ophcrach):](http://ophcrack.sourceforge.net/)
+      原理是先生成彩虹表，然后从彩红表中查找密文，找出对应的明码。
+  + 安全工具
+    - [Articles](https://www.cgsecurity.org/wiki/Articles)
+- [recuva(免费不开源)](http://www.piriform.com/recuva)
+
+### 文件比较
+- [winmerge](http://winmerge.org/) [代码位置](http://sourceforge.net/projects/winmerge/)
+
+
