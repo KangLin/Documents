@@ -7,6 +7,7 @@
 - [qt install](#qt-install)
 - [qt 插件](#qt-插件)
 - [开源qt第三方库](qt_third.md)
+- [qt 资源](resource.md)
 
 ### 获得 qt 二进制执行程序
 - 系统自带的
