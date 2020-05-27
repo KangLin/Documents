@@ -7,6 +7,7 @@
 - [qt install](#qt-install)
 - [qt 插件](#qt-插件)
 - [开源qt第三方库](qt_third.md)
+- [qt 本地化](#qt-本地化)
 - [qt 资源](resource.md)
 
 ### 获得 qt 二进制执行程序
@@ -87,16 +88,66 @@ qt 插件分为高层插件与低层插件。
 #### qt低层插件
 - 插件扩展应用程序
   1. 定义接口
-  2. 用宏
-Q_DECLARE_INTERFACE() 向qt元对象系统声明接口
-  3. 在应用程序中用 
-QPluginLoader 加载插件
+  2. 用宏 Q_DECLARE_INTERFACE() 向qt元对象系统声明接口
+  3. 在应用程序中用 QPluginLoader 加载插件
   4. 用 qobject_cast() 测试插件是否是指定接口的实现。并返回接口实例
 
 - 实现一个插件
   1. 从 QObject 和接口继承声明一个插件类
-  2. 用 
- Q_INTERFACES() 向qt元对象系统声明接口
-  3. 用 
- Q_PLUGIN_METADATA() 宏导出插件
+  2. 用 Q_INTERFACES() 向qt元对象系统声明接口
+  3. 用 Q_PLUGIN_METADATA() 宏导出插件
   4. 用 pro 文件或 CMake 建立子项目
+
+### qt 本地化
+
+- 在代码中使用 QObject::tr() 函数来得到本地化的翻译字符。
+- 语言工具(LinguistTools)，它已集成到了QtCreator中，菜单->工具->外部->qt语言家
+  - [必须] lupdate: 用于产生和更新翻译源文件(.ts)。
+    + 它可以从给定的 pro 文件中产生或更新翻译源文件。pro 文件中用 TRANSLATIONS 指定本翻译源文件(.ts)
+
+        TRANSLATIONS = arrowpad_zh_CN.ts \
+                 arrowpad_nl.ts
+
+        执行 lupdate 命令：
+
+        lupdate myproject.pro
+
+    + 直接从源码文件中产生或更新翻译源文件。
+
+        lupdate qml.qrc filevalidator.cpp -ts myapp_en.ts myapp_fr.ts
+
+  - [可选] Qt Linguist 或其它文本编辑工具，修改翻译源文件(.ts)中的翻译
+  - [必须] lrelease: 用于从翻译源文件(.ts)产生翻译文件(.qm)
+
+        lrelease.exe main_en.ts languages\main_fr.ts
+
+- 使用翻译文件(.qm)
+  + 以普通文件方式：在代码中开始时，使用 QCoreApplication::installTranslator 安装翻译文件(.qm)。
+可以安装多个翻译文件(.qm)。将以与安装相反的顺序搜索翻译，因此，将首先搜索最近安装的翻译文件(.qm)，最后搜索安装的第一个翻译文件(.qm)。一旦找到包含匹配字符串的翻译，搜索就会停止。
+
+        QTranslator zh;
+        zh.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+              + "/RabbitCommonApp_" + QLocale::system().name() + ".qm");
+        qApp->installTranslator(&zh);
+
+  + 以资源文件方式
+    - 添加翻译文件(.qm)到资源文件中。最好是单独建立一个资源文件。
+
+        RESOURCES += translations_RabbitCommonApp.qrc
+
+    - 使用 Q_INIT_RESOURCE 初化资源文件
+
+        Q_INIT_RESOURCE(translations_RabbitCommonApp);
+
+    - 从资源中安装翻译文件(.qm)
+
+        QTranslator zh;
+        zh.load(":/RabbitCommonApp_" + QLocale::system().name() + ".qm");
+        qApp->installTranslator(&zh);
+
+- 在代码中结束时，要使用 QCoreApplication::removeTranslator 卸载翻译文件(.qm)
+
+        qApp->removeTranslator(&zh);
+
+- [参考：qt 资源](resource.md)
+
