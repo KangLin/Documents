@@ -117,16 +117,19 @@ GENERATED_QT_TRANSLATIONS 函数：生成 qt 翻译
 + 功能：
   - 生成或更新翻译源文件(.ts)
   - 生成翻译文件(.qm)
-  - 生成翻译资源文件(.qrc)，并把资源文件设置到变量 TRANSLATIONS_RESOURCE_FILES 中
-  - 安装翻译文件(.qm)到安装目录
+  - 生成翻译资源文件(.qrc)，放到参数 OUT_QRC 指定的变量中
+  - 安装翻译文件(.qm)到安装目录。目录结构详见后面说明
 + 参数：
   - SOURCES: 要理新的源文件。默认使用变量 SOURCES_FILES 和 SOURCE_UI_FILES 之中的源文件。
-  - NAME: 生成的翻译源文件(.ts)文件名前缀，默认值 ${PROJECT_NAME}。**注意**：翻译资源名为此名字加上前缀 translations_
+  - NAME: 生成的翻译源文件(.ts)文件名前缀，默认值 ${PROJECT_NAME}。
+    **注意**：翻译资源名为此名字加上前缀 translations_ ,它也可以由 OUT_QRC_NAME 参数指定的变量得到
   - TSDIR: 翻译源文件(.ts)存放的目录，默认值：${CMAKE_CURRENT_SOURCE_DIR}/Resource/Translations
   - UPDATE: 是否更新翻译源文件(.ts)
-+ 输出值：
-  - TRANSLATIONS_RESOURCE_FILES: 生成的资源文件(.qrc)。
++ 输出值参数：
+  - OUT_QRC: 生成的翻译资源文件(.qrc) 变量。
     如果需要使用翻译资源文件，则把它加入到add_executable 或 add_library 中。
+  - OUT_QRC_NAME: 翻译资源文件名变量，它用于代码使用库中的资源时，
+    调用 Q_INIT_RESOURCE 初始化此翻译资源
 + 使用：
   - 在 CMakeLists.txt加入包含此文件
 
@@ -134,12 +137,16 @@ GENERATED_QT_TRANSLATIONS 函数：生成 qt 翻译
   
   - 调用 GENERATED_QT_TRANSLATIONS 函数
     + [必选] 设置 SOURCES 参数为要更新的源文件
-    + [可选] 设置 NAME 参数为翻译源文件(.ts)文件名的前缀，默认值是目标名 ${PROJECT_NAME}。**注意**：翻译资源名为此名字加上前缀 translations_ 。
+    + [必选] 设置 OUT_QRC 参数为接收资源文件名变量
+    + [可选] 设置 NAME 参数为翻译源文件(.ts)文件名的前缀，默认值是目标名 ${PROJECT_NAME}。
+            **注意**：翻译资源名为此名字加上前缀 translations_ 。这个也可以由 OUT_QRC_NAME 参数指定的变量得到
     + [可选] 设置 TSDIR 参数为翻译源文件(.ts)生成的目录。默认值是 ${CMAKE_CURRENT_SOURCE_DIR}/Resource/Translations
     + [可选] 设置 UPDATE 参数，是否更翻译源文件(.ts)
   - 如果要使用翻译资源文件，
-    则把输出值 ${TRANSLATIONS_RESOURCE_FILES} 加入到 add_executable 或 add_library 中。
+    则把输出参数 OUT_QRC 后的变量值加入到 add_executable 或 add_library 中。
 
+        GENERATED_QT_TRANSLATIONS(UPDATE SOURCES ${SOURCE_FILES} ${SOURCE_UI_FILES}
+            OUT_QRC TRANSLATIONS_RESOURCE_FILES)
         add_executable(${PROJECT_NAME} ${TRANSLATIONS_RESOURCE_FILES})
 
     在C++代码 main 中加入下列代码初始化翻译资源：
@@ -160,44 +167,48 @@ GENERATED_QT_TRANSLATIONS 函数：生成 qt 翻译
   - 在源码 main 函数中加入下列代码。
     + 初始化翻译资源。如果是 DEBUG，需要加入宏定义 _DEBUG . 必须使用 -DCMAKE_BUILD_TYPE=Debug
 
-        // 如果使用了翻译资源文件，则必须加上此步，初始化翻译资源
-        // 资源文件名为 translations_ 加上 “设置的 NAME”
-        Q_INIT_RESOURCE(translations_${PROJECT_NAME});
+            // 如果使用了翻译资源文件，则必须加上此步，初始化翻译资源
+            // 资源文件名为 translations_ 加上 “设置的 NAME”
+            Q_INIT_RESOURCE(translations_${PROJECT_NAME});
 
     + 安装翻译
 
-        // 安装翻译
-        QTranslator translator;
-        translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+            // 安装翻译
+            QTranslator translator;
+            translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
                    + "/" + qApp->applicationName() + "_" + QLocale::system().name() + ".qm");
-        qApp->installTranslator(&translator);
+            qApp->installTranslator(&translator);
 
   - 完整的例子：
     + CMakeLists.txt
   
-        include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
-        GENERATED_QT_TRANSLATIONS(UPDATE
-                SOURCES ${SOURCE_FILES} ${SOURCE_UI_FILES})
-        # 把翻译文件加入到资源文件中
-        if("Debug" STREQUAL CMAKE_BUILD_TYPE)
-            LIST(APPEND QRC_FILE ${TRANSLATIONS_RESOURCE_FILES})
-        endif()
-        add_executable(${PROJECT_NAME} ${QRC_FILE})
-        # 增加依赖（可选）
-        add_dependencies(${PROJECT_NAME} translations_${PROJECT_NAME})
+            #翻译
+            include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/Qt5CorePatches.cmake)
+            include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/Translations.cmake)
+        
+            GENERATED_QT_TRANSLATIONS(UPDATE SOURCES ${SOURCE_FILES} ${SOURCE_UI_FILES}
+                OUT_QRC TRANSLATIONS_RESOURCE_FILES)
+            if("Debug" STREQUAL CMAKE_BUILD_TYPE)
+                LIST(APPEND QRC_FILE 
+                    ${TRANSLATIONS_RESOURCE_FILES}
+                    )
+            endif()
+            add_executable(${PROJECT_NAME} ${QRC_FILE})
+            # 增加依赖（可选）
+            add_dependencies(${PROJECT_NAME} translations_${PROJECT_NAME})
 
     + 源码文件(main.c)
 
-        // 如果使用了翻译资源文件，则必须加上此步，初始化翻译资源
-        // 资源文件名为 translations_ 加上 “设置的 NAME”
-        #ifdef _DEBUG
-            Q_INIT_RESOURCE(translations_${PROJECT_NAME});
-        #endif 
-        // 安装翻译对象
-        QTranslator translator;
-        translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+            // 如果使用了翻译资源文件，则必须加上此步，初始化翻译资源
+            // 资源文件名为 translations_ 加上 “设置的 NAME”
+            #ifdef _DEBUG
+                Q_INIT_RESOURCE(translations_${PROJECT_NAME});
+            #endif 
+            // 安装翻译对象
+            QTranslator translator;
+            translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
                    + "/" + qApp->applicationName() + "_" + QLocale::system().name() + ".qm");
-        qApp->installTranslator(&translator);
+            qApp->installTranslator(&translator);
 
 
 debug 翻译资源做为资源文件嵌入程序
