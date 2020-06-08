@@ -1,6 +1,13 @@
 # Travis
 ---------
+
 作者：康林(kl222@126.com)
+
+---------
+
+### 客户端命令行操作
+
+详见：https://github.com/travis-ci/travis.rb#readme
 
 ### 基本操作
 - 在 .travis 中多行书写脚本，使用“ | ”
