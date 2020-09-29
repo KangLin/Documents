@@ -17,4 +17,7 @@
 - 工具
   + [常用工具](opensource/Tools.md)
   + [常用开源工具](opensource/OpenSourceTools.md)
+  + [编译工具使用](compile/tools.md)
 - [AI](ai/ai.md)
+- [Windows](Windows)
+
