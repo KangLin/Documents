@@ -2,8 +2,11 @@
 作者：康林
 
 ### 码表
+
+- [关于键盘输入](https://docs.microsoft.com/zh-cn/windows/win32/inputdev/about-keyboard-input)
 - [键盘扫描码](https://baike.baidu.com/item/%E9%94%AE%E7%9B%98%E6%89%AB%E6%8F%8F%E7%A0%81/7360710?fr=aladdin)
 键盘扫描码是键盘硬件产生的编码。由驱动程序解析成虚拟键盘码。
+
 
 /* @msdn{cc240584} says:
  * "... (a scancode is an 8-bit value specifying a key location on the keyboard).
