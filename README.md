@@ -13,7 +13,7 @@
   + [Travis](ci/travis/travis.md)
   + [Appveyor](ci/appveyor/Appveyor.md)
 - [多媒体](multimedia/Multimedia.md)
-- [开源项目](complie/README.md)
+- [开源项目](compile/README.md)
 - 工具
   + [常用工具](opensource/Tools.md)
   + [常用开源工具](opensource/OpenSourceTools.md)
