@@ -1,6 +1,15 @@
 ## coturn 配置
 作者：康林（kl222@126.com)
 
+### 执行程序
+- turnserver: 服务程序
+- turnadmin：实际就是turnserver
+- turnutils_natdiscovery
+- turnutils_peer
+- turnutils_uclient
+- turnutils_oauth
+- turnutils_stunclient
+
 ### 配置文件
 
 turnserver.conf
