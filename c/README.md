@@ -1,2 +1,3 @@
 - 《C++ Concurrency in Action - SECOND EDITION》的中文翻译: https://github.com/xiaoweiChen/CPP-Concurrency-In-Action-2ed-2019
 - 《C++17 STL cookbook》英文版的中文翻译: https://github.com/xiaoweiChen/CPP-17-STL-cookbook
+- 《C++ Templates 第二版》中文翻译: https://github.com/Walton1128/CPP-Templates-2nd--
