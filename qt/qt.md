@@ -9,6 +9,7 @@
 - [开源qt第三方库](qt_third.md)
 - [qt 本地化](#qt-本地化)
 - [qt 资源](resource.md)
+- [qt 工具](#qt-工具)
 
 ### 获得 qt 二进制执行程序
 - 系统自带的
@@ -151,3 +152,9 @@ qt 插件分为高层插件与低层插件。
 
 - [参考：qt 资源](resource.md)
 
+### qt 工具
+
+- qss:
+  + QssStylesheetEditor: https://github.com/hustlei/QssStylesheetEditor
+  + qsseditor: https://github.com/smoked-herring/qsseditor
+  + qui-creator: https://github.com/jhonconal/QUI-Creator
