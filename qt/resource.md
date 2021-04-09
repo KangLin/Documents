@@ -44,6 +44,10 @@ Q_INIT_RESOURCE 参数为资源文件的基本名。
 
         QImage image(":/image/man.png");
 
+#### 释放资源
+
+        Q_CLEANUP_RESOURCE(qApp->applicationName() + "_RESOURCE")
+
 #### 翻译资源
 
 ##### pro
