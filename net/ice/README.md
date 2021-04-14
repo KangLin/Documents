@@ -24,4 +24,6 @@
 - libnice: https://github.com/libnice/libnice
 - libjuice: https://github.com/paullouisageneau/libjuice
 
-- libdatachannel: https://github.com/paullouisageneau/libdatachannel
+- libdatachannel: https://github.com/paullouisageneau/libdatachannel  
+流程图：
+[![](image/90006003-b10ac900-dcca-11ea-8d3d-f1dca799f031.png)](image/90006003-b10ac900-dcca-11ea-8d3d-f1dca799f031.png)
