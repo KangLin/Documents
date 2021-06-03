@@ -51,6 +51,10 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - blendar: https://www.blender.org/
 - osg: http://osgearth.org https://github.com/gwaldron/osgearth
 
+### 网络
+#### 下载工具
+[Free download Manager: https://sourceforge.net/projects/freedownload/](https://sourceforge.net/projects/freedownload/)
+
 ### 网络安全开发包：
 
 #### 网络探测工具：
@@ -73,6 +77,7 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 
 ### 远程控制工具：
+- [玉兔远程控制：https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - vnc: http://www.realvnc.com/  
   现在已闭源
 - libvnc: https://libvnc.github.io/ https://github.com/LibVNC  
