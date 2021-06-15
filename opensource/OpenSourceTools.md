@@ -129,6 +129,8 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - [pendrivelinux](http://www.pendrivelinux.com/)
 - [Universal USB Installer](http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/)
 
+- RUFUS: [https://github.com/pbatard/rufus](https://github.com/pbatard/rufus)
+
 ### 文件恢复
 - [cgsecurity](http://www.cgsecurity.org) [源码](git clone http://git.cgsecurity.org/testdisk.git)
   + 数据恢复工具
