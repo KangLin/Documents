@@ -11,3 +11,7 @@
 
 - [dh_shlibdeps](http://www.man7.org/linux/man-pages/man1/dh_shlibdeps.1.html)
 
+- [mentors](https://mentors.debian.net)
+- [维护者简介：我的软件包将如何进入 Debian?](https://mentors.debian.net/intro-maintainers/)
+- [发布软件到debian源.md](https://x.hacking8.com/post-386.html)
+- [打包、发布](package.md)

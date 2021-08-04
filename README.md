@@ -4,6 +4,7 @@
 作者：康林(kl222@126.com)
 
 - [Ubuntu](ubuntu/ubuntu.md)
+  + [打包、发布](ubuntu/package.md)
   + [launchpad](ubuntu/launchpad.md)
 - [Qt](qt/qt.md)
 - [Android]
