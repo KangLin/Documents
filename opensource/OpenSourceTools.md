@@ -51,6 +51,10 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - blendar: https://www.blender.org/
 - osg: http://osgearth.org https://github.com/gwaldron/osgearth
 
+### 网络
+#### 下载工具
+[Free download Manager: https://sourceforge.net/projects/freedownload/](https://sourceforge.net/projects/freedownload/)
+
 ### 网络安全开发包：
 
 #### 网络探测工具：
@@ -73,6 +77,7 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 
 ### 远程控制工具：
+- [玉兔远程控制：https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - vnc: http://www.realvnc.com/  
   现在已闭源
 - libvnc: https://libvnc.github.io/ https://github.com/LibVNC  
@@ -128,6 +133,10 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - [yumi](http://www.pendrivelinux.com/yumi-multiboot-usb-creator/)
 - [pendrivelinux](http://www.pendrivelinux.com/)
 - [Universal USB Installer](http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/)
+
+- RUFUS: [https://github.com/pbatard/rufus](https://github.com/pbatard/rufus)
+- UNetbootin: [https://github.com/unetbootin/unetbootin](https://github.com/unetbootin/unetbootin)
+
 
 ### 文件恢复
 - [cgsecurity](http://www.cgsecurity.org) [源码](git clone http://git.cgsecurity.org/testdisk.git)
