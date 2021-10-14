@@ -43,6 +43,8 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - GIMP: http://www.gimp.org/
 - imagemagick:http://www.imagemagick.org/
 - opencv: http://opencv.org/ git://github.com/Itseez/opencv.git
+- [SVG 编辑器](https://github.com/SVG-Edit/svgedit)
+- [topology](https://github.com/le5le-com/topology): 拓扑图编辑器
 
 #### CAD
 - librecad: https://www.librecad.org/
@@ -84,6 +86,12 @@ git clone https://github.com/arut/nginx-rtmp-module.git
   + libvncserver: https://github.com/LibVNC/libvncserver
 - tigervnc: https://tigervnc.org https://github.com/TigerVNC/tigervnc/releases
 - vncflinger: https://github.com/cyanogen/vncflinger
+
+### 网络代理：
+- [goproxy](https://github.com/snail007/goproxy):代理服务器
+- [HAProxy](https://github.com/haproxy/haproxy): 负载均衡网络代理
+- [玉兔代理服务器](https://github.com/KangLin/RabbitProxyServer)
+- [libproxy](https://github.com/libproxy/libproxy)
 
 ### 编辑工具：
 
@@ -133,10 +141,14 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - [yumi](http://www.pendrivelinux.com/yumi-multiboot-usb-creator/)
 - [pendrivelinux](http://www.pendrivelinux.com/)
 - [Universal USB Installer](http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/)
+- [Ventoy](https://github.com/ventoy/Ventoy)
 
 - RUFUS: [https://github.com/pbatard/rufus](https://github.com/pbatard/rufus)
 - UNetbootin: [https://github.com/unetbootin/unetbootin](https://github.com/unetbootin/unetbootin)
+- [UEFI:NTFS - Boot NTFS or exFAT partitions from UEFI](https://github.com/pbatard/uefi-ntfs)
 
+#### UEFI
+- [UEFITool](https://github.com/LongSoft/UEFITool)
 
 ### 文件恢复
 - [cgsecurity](http://www.cgsecurity.org) [源码](git clone http://git.cgsecurity.org/testdisk.git)
@@ -158,4 +170,12 @@ http://pogostick.net/~pnh/ntpasswd/) [代码](source_code/chntpw-source-140201.z
 ### 文件比较
 - [winmerge](http://winmerge.org/) [代码位置](http://sourceforge.net/projects/winmerge/)
 
+### 反编译
+- [cutter](https://github.com/rizinorg/cutter)
+
+## 输入法
+- [华宇拼音输入法核心源码](https://github.com/balloonwj/unispim)
+
+## 文档
+- [cmake cookbook recipes](https://github.com/dev-cafe/cmake-cookbook)
 
