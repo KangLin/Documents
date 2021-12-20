@@ -3,6 +3,62 @@
 
 ## Windows
 
+ Windows中接入多个显示器时，可设置为复制和扩展屏。
+ 1. 设置为复制屏幕时，多个显示器的分辨率是一样的，位置为0~分辨率值
+ 2. 设置为扩展屏幕时，显示器之间的关系比较复杂些。首先Windows系统会识别一个主显示器，
+ 
+ 这个可以在屏幕分辨率中更改。多个显示器之间的位置关系也可以再屏幕分辨率中更改。
+ 其中主显示器的位置为(0,0)到(width,height)，其他显示器位置由与主显示器的位置关系决定，
+ 在主显示器左上，则为负数，用0减去长宽；在右下，则由主显示器的分辨率加上长宽。
+ 其中驱动或用mouse_event处理时也是一样，主显示器为0~65535，
+ 其他显示器根据主显示器的相对位置确定。
+ 
+    -----------------------------------------------------------------------------
+    |                                       Virtural Screen                     |
+    |   ------------                                                            |
+    |   |          |                                                            |
+    |   |  Screen1 |     (0,0)                                                  |
+    |   |          |    /                                                       |
+    |   ------------   /                                                        |
+    |   ------------  ------------                                              |
+    |   |          |  |          |                                              |
+    |   |  Screen2 |  |  Primary |                                              |
+    |   |          |  |  Screen3 |                                              |
+    |   ------------  ------------                                              |
+    |                                                                           |
+    |                                                                           |
+    |                                                                           |
+    |                                                                           |
+    |                                                                           |
+    |                                                                           |
+    -----------------------------------------------------------------------------
+ 
+### 截屏
+
+- 得到屏幕 DC， 以下几种方法一样：
+
+      // The following methods can all get the desktop
+      //m_DC = CreateDCA("DISPLAY",NULL,NULL,NULL ); // Primary screen
+      //m_DC = GetWindowDC(NULL);
+      m_DC = GetDC(GetDesktopWindow()); // Multi-screen;
+
+
+- 得到屏幕的大小
+  + 物理屏幕
+  
+        GetDeviceCaps(m_DC, HORZRES); // Primary screen pixel
+        GetDeviceCaps(m_DC, VERTRES); // Primary screen pixel
+    
+  + 虚拟屏幕
+  
+        GetSystemMetrics(SM_CXVIRTUALSCREEN);
+        GetSystemMetrics(SM_CYVIRTUALSCREEN);
+    
+- 代码：
+
+https://github.com/KangLin/RabbitRemoteControl/blob/master/Service/DesktopWindows.h  
+https://github.com/KangLin/RabbitRemoteControl/blob/master/Service/DesktopWindows.cpp
+
 ## linux - X 窗口(WINDOW)
 ### X 窗口（WINDOW）系统介绍
 
@@ -32,47 +88,110 @@ Xlib 中的大多数函数只是将请求添加到输出缓冲区。这些请求
 
 ### 截屏
 
-void DestroyImage(void *pImage)
-{
-    LOG_MODEL_DEBUG("CDisplayXLib", "void DestroyImage(void *info)");
-    XDestroyImage(static_cast<XImage*>(pImage));
-}
+- 打开设备和初始化 Image
 
-QImage CScreenXLib::GetScreen(int index)
-{
-    Window desktop = 0;
-    Display* dsp = NULL;
-    QImage img;
+      int CDisplayXLib::Open()
+      {
+          int nRet = 0;
+          /* Connect to a local display.
+           * it defaults to the value of the DISPLAY environment variable. */
+          m_pDisplay = XOpenDisplay(NULL);
+          do{
+              if(!m_pDisplay)
+              {
+                  nRet = -1;
+              }
 
-    dsp = XOpenDisplay(NULL);/* Connect to a local display */
-    if(NULL == dsp)
-    {
-        LOG_MODEL_ERROR("CScreenXLib","Cannot connect to local display");
-        return img;
-    }
+              if (strstr(ServerVendor(m_pDisplay), "X.Org")) {
+                  int vendrel = VendorRelease(m_pDisplay);
 
-    do{
-        desktop = DefaultRootWindow(dsp); // RootWindow(dsp,0);/* Refer to the root window */
-        if(0 == desktop)
-        {
-            LOG_MODEL_ERROR("CScreenXLib", "cannot get root window");
-            break;
-        }
-        
-        /* Retrive the width and the height of the screen */
-        int width = DisplayWidth(dsp, DefaultScreen(dsp));
-        int height = DisplayHeight(dsp, DefaultScreen(dsp));
-        
-        /* Get the Image of the root window */
-        XImage* pImage = XGetImage(dsp, desktop, 0, 0, width, height, AllPlanes, ZPixmap);
-        img = QImage((uchar*)pImage->data,
-                     pImage->width, pImage->height,
-                     GetFormat(pImage),
-                     myImageCleanupHandler, pImage);
-    } while(0);
-    XCloseDisplay(dsp);
-    return img;
-}
+                  QString version("X.Org version: ");
+                  version += QString::number(vendrel / 10000000);
+                  version += "." + QString::number((vendrel /   100000) % 100),
+                          version += "." + QString::number((vendrel /     1000) % 100);
+                  if (vendrel % 1000) {
+                      version += "." + QString::number(vendrel % 1000);
+                  }
+                  LOG_MODEL_DEBUG("CDisplayXLib", version.toStdString().c_str());
+              }
+
+              m_RootWindow = DefaultRootWindow(m_pDisplay); // RootWindow(dsp,0);/* Refer to the root window */
+              if(0 == m_RootWindow)
+              {
+                  LOG_MODEL_ERROR("CDisplayXLib", "cannot get root window");
+                  nRet = -2;
+                  break;
+              }
+          }while(0);
+
+          if(nRet)
+          {   
+              Close();
+              return nRet;
+          }
+
+          // Initial QImage and XImage
+          Visual* vis = DefaultVisual(m_pDisplay, DefaultScreen(m_pDisplay));
+          if (vis && vis->c_class == TrueColor) {
+              m_pImage = XCreateImage(m_pDisplay, vis,
+                                  DefaultDepth(m_pDisplay, DefaultScreen(m_pDisplay)),
+                                  ZPixmap, 0, 0, Width(), Height(),
+                                  BitmapPad(m_pDisplay), 0);
+              if(m_pImage)
+              {
+                  m_pImage->data = (char *)malloc(m_pImage->bytes_per_line * m_pImage->height);
+                  if (m_pImage->data) 
+                  {
+                      m_Format = GetFormat(m_pImage);
+                      if(QImage::Format_Invalid != GetFormat())
+                          m_Desktop = QImage((uchar*)m_pImage->data,
+                                           Width(), Height(), GetFormat());
+                  }
+
+                  if(!m_pImage->data || QImage::Format_Invalid == GetFormat())
+                  {
+                      DestroyImage(m_pImage);
+                      m_pImage = NULL;
+                  }
+              }
+          }
+
+          return nRet;
+      }
+
+- 截屏
+
+      QImage CDisplayXLib::GetDisplay(int x, int y, int width, int height)
+      {
+          if(!m_pDisplay || 0 == m_RootWindow)
+              return QImage();
+
+          if(-1 > width)
+              width = Width();
+          if(-1 > height)
+              height = Height();
+          XImage *pImage = XGetImage(m_pDisplay, m_RootWindow, x, y, width, height,
+                                     AllPlanes, ZPixmap);
+          if(QImage::Format_Invalid == GetFormat())
+              m_Format = GetFormat(pImage);
+          if(QImage::Format_Invalid != GetFormat())
+          {
+              QImage img((uchar*)pImage->data,
+                         pImage->width, pImage->height,
+                         GetFormat(),
+                         DestroyImage, pImage);
+              return img;
+          }
+          else
+              DestroyImage(pImage);
+
+          return QImage();
+      }
+
+- 代码：
+
+https://github.com/KangLin/RabbitRemoteControl/blob/master/Service/DisplayXLib.h  
+https://github.com/KangLin/RabbitRemoteControl/blob/master/Service/DisplayXLib.cpp
 
 ### 参考
 
