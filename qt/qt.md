@@ -3,6 +3,7 @@
 作者：康林(kl222@126.com)
 -------------------------
 
+- [QObject](#QObject)
 - [获得 qt 二进制执行程序](#获得-qt-二进制执行程序)
 - [qt install](#qt-install)
 - [qt 插件](#qt-插件)
@@ -10,6 +11,10 @@
 - [qt 本地化](#qt-本地化)
 - [qt 资源](resource.md)
 - [qt 工具](#qt-工具)
+
+### QObject
+
+![QObject](image/QObject.jpg)
 
 ### 获得 qt 二进制执行程序
 - 系统自带的
