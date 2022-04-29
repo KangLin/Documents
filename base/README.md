@@ -18,3 +18,12 @@
 
 - [虚拟键盘码](https://docs.microsoft.com/zh-cn/windows/win32/inputdev/virtual-key-codes?redirectedfrom=MSDN)
 - [ASCII 码](https://baike.baidu.com/item/ASCII/309296?fromtitle=ascii%E7%A0%81&fromid=99077&fr=aladdin)
+
+### 字体
+
+
+- emoji
+  - [Emoji List](https://unicode.org/emoji/charts/full-emoji-list.html)
+  - Unicode 表
+    - [https://unicode-table.com/](https://unicode-table.com/) 
+    - [https://unicode-table.com/cn/](https://unicode-table.com/cn/)
