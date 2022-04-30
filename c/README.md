@@ -13,3 +13,5 @@
   + msvc：/SUBSYSTEM:WINDOWS",5.01"
 
 - MSVC 编译 utf8 编码的源文件,在标志中加入: "utf-8"
+- [MSVC 各版本密钥](VisualStudioKey.md)
+- [MSVC 版本](MSVCVersion.md)
