@@ -1,6 +1,6 @@
 ## Visual Studio 2022
-- Enterprise£¨ÆóÒµ°æ£©:VHF9H-NXBBB-638P6-6JHCY-88JWH 
-- Professional£¨×¨Òµ°æ£©:TD244-P4NB7-YQ6XK-Y8MMM-YWV2J
+- Enterpriseï¼ˆä¼ä¸šç‰ˆï¼‰:VHF9H-NXBBB-638P6-6JHCY-88JWH 
+- Professionalï¼ˆä¸“ä¸šç‰ˆï¼‰:TD244-P4NB7-YQ6XK-Y8MMM-YWV2J
 
 ## Visual Studio 2019 
 - Enterprise
@@ -15,21 +15,21 @@ NYWVH-HT4XC-R2WYW-9Y3CM-X4V3Y
 
 ## Visual Studio 2015:
 
-- ×¨Òµ°æ(Visual Studio Professional 2015 with Update 3)£ºHMGNV-WCYXV-X7G9W-YCX63-B98R2
-- ÆóÒµ°æ(Visual Studio Enterprise 2015 with Update 3)£ºHM6NR-QXX7C-DFW2Y-8B82K-WTYJV
+- ä¸“ä¸šç‰ˆ(Visual Studio Professional 2015 with Update 3)ï¼šHMGNV-WCYXV-X7G9W-YCX63-B98R2
+- ä¼ä¸šç‰ˆ(Visual Studio Enterprise 2015 with Update 3)ï¼šHM6NR-QXX7C-DFW2Y-8B82K-WTYJV
 
 ## Visual Studio 2013
-- Visual Studio Ultimate 2013 KEY£¨ÃÜÔ¿£©£ºBWG7X-J98B3-W34RT-33B3R-JVYW9
-- Visual Studio Premium 2013 KEY£¨ÃÜÔ¿£©£ºFBJVC-3CMTX-D8DVP-RTQCT-92494
-- Visual Studio Professional 2013  KEY£¨ÃÜÔ¿£©£º XDM3T-W3T3V-MGJWK-8BFVD-GVPKY
-- Team Foundation Server 2013 KEY£¨ÃÜÔ¿£©£ºMHG9J-HHHX9-WWPQP-D8T7H-7KCQG
+- Visual Studio Ultimate 2013 KEYï¼ˆå¯†é’¥ï¼‰ï¼šBWG7X-J98B3-W34RT-33B3R-JVYW9
+- Visual Studio Premium 2013 KEYï¼ˆå¯†é’¥ï¼‰ï¼šFBJVC-3CMTX-D8DVP-RTQCT-92494
+- Visual Studio Professional 2013  KEYï¼ˆå¯†é’¥ï¼‰ï¼š XDM3T-W3T3V-MGJWK-8BFVD-GVPKY
+- Team Foundation Server 2013 KEYï¼ˆå¯†é’¥ï¼‰ï¼šMHG9J-HHHX9-WWPQP-D8T7H-7KCQG
 
 ## Visual Studio 2012
-- Visual Studio 2012 UltimateÆì½¢°æĞòÁĞºÅ£º 
+- Visual Studio 2012 Ultimateæ——èˆ°ç‰ˆåºåˆ—å·ï¼š 
 
-	YKCW6-BPFPF-BT8C9-7DCTH-QXGWC
-	RBCXF-CVBGR-382MK-DFHJ4-C69G8 
-	YQ7PR-QTHDM-HCBCV-9GKGG-TB2TM 
+  YKCW6-BPFPF-BT8C9-7DCTH-QXGWC
+  RBCXF-CVBGR-382MK-DFHJ4-C69G8 
+  YQ7PR-QTHDM-HCBCV-9GKGG-TB2TM 
 
 ## Visual Studio 2010
 - Visual Studio Ultimate 2010 KEY: YCFHQ9DWCYDKV88T2TMHG7BHP
