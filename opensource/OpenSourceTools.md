@@ -95,10 +95,11 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 ### 编辑工具：
 
-- vim：http://www.vim.org/download.php
+- notepad++: https://github.com/notepad-plus-plus/notepad-plus-plus
+- vim: http://www.vim.org/download.php
 - IDE：
-  + eclipse：http://www.eclipse.org/
-  + kdevelop：http://kdevelop.org/
+  + eclipse: http://www.eclipse.org/
+  + kdevelop: http://kdevelop.org/
 - [Markdown Editor](../Markdown.md)
 
 ### Microsoft visual studio 扩展
