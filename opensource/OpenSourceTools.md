@@ -77,6 +77,9 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - Ethereal：
 - tcpdump：
 
+### Windows 系统私钥导出工具
+- mimikatz: https://github.com/gentilkiwi/mimikatz
+- jailbreak: https://github.com/iSECPartners/jailbreak
 
 ### 远程控制工具：
 - [玉兔远程控制：https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
