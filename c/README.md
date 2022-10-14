@@ -9,6 +9,9 @@
 
 #### C/C++
 
+- C++ 参考手册: https://zh.cppreference.com
+  - C++ 编译器支持情况表: https://zh.cppreference.com/w/cpp/compiler_support#cpp11
+
 - 算法
   + [The Algorithms - C++](https://github.com/TheAlgorithms/C-Plus-Plus)
 
