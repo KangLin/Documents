@@ -137,7 +137,7 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
 #### 常使用的类如下：
 
 |      类名        |        配置名                    |说明   |
-|:-----:|:---------------:|:--------------------------------:|
+|------:|---------------:|:--------------------------------|
 |ConsoleAppender  | org.apache.log4j.ConsoleAppender |控制台             |
 |FileAppender     | org.apache.log4j.FileAppender    |文件               |
 |DailyFileAppender|org.apache.log4j.DailyFileAppender|每天产生一个日志文件|
@@ -158,7 +158,7 @@ Layouts提供四种日志输出样式，如根据HTML样式、自由指定样式
 #### 常使用的类如下：
 
 |      类名        |        配置名                    |说明|
-|:-----:|:---------------:|:--------------------------------:|
+|-----:|---------------:|:--------------------------------|
 |PatternLayout|org.apache.log4j.PatternLayout|可以灵活地指定布局模式|
 |SimpleLayout| org.apache.log4j.SimpleLayout|包含日志信息的级别和信息字符串|
 |TTCCLayout|org.apache.log4j.TTCCLayout|包含日志产生的时间、线程、类别等信息|
@@ -231,6 +231,41 @@ Log4Qt 可以输出使用 Qt 的日志输出函数产生的日志。
         QLoggingCategory Logger("RabbitCommon.Logger");
         qCCritical(Logger) << "Log folder is empty";
         
+- QLoggingCategory 配置规则：
+
+日志记录规则允许您以灵活的方式启用或禁用类别的日志记录。规则在文本中指定，其中每行必须具有以下格式：
+
+        <category>[.<type>] = true|false
+
+<category\> 是类别的名称，可能使用 * 作为第一个或最后一个字符的通配符，或在两个位置。可选<type>选项必须是debug、 info、 warning、 或者 critical。不符合此方案的行将被忽略。
+规则按文本顺序（从第一个到最后一个）进行评估。也就是说，如果两个规则应用于类别/类型，则稍后出现的规则将应用。
+规则可以通过 setFilterRules() 设置过滤器规则：
+
+        QLoggingCategory::setFilterRules("*.debug=false\n"
+                                         "driver.usb.debug=true");
+
+日志记录规则从日志记录配置文件的 [规则] 部分自动加载。这些配置文件在 QtProject 配置目录中查找，或在QT_LOGGING_CONF环境变量中显式设置：
+
+    [Rules]
+    *.debug=false
+    driver.usb.debug=true
+
+日志记录规则也可以在QT_LOGGING_RULES环境变量中指定;多个规则也可以用分号分隔：
+
+         QT_LOGGING_RULES="*.debug=false;driver.usb.debug=true"
+
+由setFilterRules()设置的规则优先于 QtProject 配置目录中指定的规则。反过来，这些规则可以被QT_LOGGING_CONF指定的配置文件中的规则和QT_LOGGING_RULES设置的规则覆盖。
+设置顺序如下：
+
+  1. [QLibraryInfo::DataPath]/qtlogging.ini
+  2. QtProject/qtlogging.ini
+  3. setFilterRules()
+  4. QT_LOGGING_CONF
+  5. QT_LOGGING_RULES
+
+QtProject/qtlogging.ini 文件在 QStandardPaths::GenericConfigLocation 返回的所有目录中查找。
+设置QT_LOGGING_DEBUG环境变量以找出日志记录规则的加载位置。
+
 ## 配置文件
 
 ### 用下面方法设置配置文件：

@@ -52,6 +52,7 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 #### 3D
 - blendar: https://www.blender.org/
 - osg: http://osgearth.org https://github.com/gwaldron/osgearth
+- Open3D: https://github.com/isl-org/Open3D
 
 ### 网络
 #### 下载工具
