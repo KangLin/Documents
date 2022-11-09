@@ -1,6 +1,6 @@
 # Qt
 
-作者：康林(kl222@126.com)
+作者：康林 <kl222@126.com>
 -------------------------
 
 - [QObject](#QObject)
@@ -11,6 +11,7 @@
 - [qt 本地化](#qt-本地化)
 - [qt 资源](resource.md)
 - [qt 工具](#qt-工具)
+- [qt 主题](theme.md)
 
 ### QObject
 
