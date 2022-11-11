@@ -1,5 +1,7 @@
 Qt 主题
+
 作者：康林 <kl222@126.com>
+
 ------------------------------
 
 - 图标主题规范: https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
