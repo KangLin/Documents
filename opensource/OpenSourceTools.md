@@ -1,5 +1,8 @@
 # 常用开源工具
-作者：康林(kl222@126.com)
+
+作者：康林 <kl222@126.com>
+
+------------------------------------------------------------------------------------------------
 
 ### 多媒体
 #### 视频编辑
@@ -45,6 +48,22 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - opencv: http://opencv.org/ git://github.com/Itseez/opencv.git
 - [SVG 编辑器](https://github.com/SVG-Edit/svgedit)
 - [topology](https://github.com/le5le-com/topology): 拓扑图编辑器
+
+### 绘图工具
+- [Graphviz](http://www.graphviz.org/)
+  + [编辑器]
+    - [GraphvizAnim](https://github.com/mapio/GraphvizAnim):A tool to create animated graph visualizations, based on graphviz. 
+    - 
+- [plantuml](https://github.com/plantuml/plantuml): Generate diagrams from textual description 
+  - [在线编辑器](https://plantuml-editor.kkeisuke.com/)
+  - [plantumlqeditor](https://github.com/jalbersol/plantumlqeditor)
+- [mermaid](https://github.com/mermaid-js/mermaid): Generation of diagrams like flowcharts or sequence diagrams from text in a similar manner as markdown 
+  + [在线编辑器](https://mermaid.live/) 
+  + [doxygen-mermaid](https://github.com/tttapa/doxygen-mermaid)
+- [drawio](https://github.com/jgraph/drawio): draw.io is a JavaScript, client-side editor for general diagramming and whiteboarding 
+  + [在线编辑器](https://app.diagrams.net/)
+- [diagrams](https://github.com/mingrammer/diagrams):  Diagram as Code for prototyping cloud system architectures 
+- [xmind](https://github.com/xmindltd/xmind)
 
 #### CAD
 - librecad: https://www.librecad.org/
@@ -141,9 +160,6 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 ### IM:
 - [libnice:](https://libnice.freedesktop.org/) P2P 通信库
-
-### 思想导图工具
-- [xmind](https://github.com/xmindltd/xmind)
 
 ### 制做u盘启动盘工具
 
