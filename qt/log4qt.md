@@ -1,5 +1,8 @@
 # Log4Qt 使用
+
 作者：康林 <kl222@126.com>
+
+文档位置：[https://github.com/KangLin/Documents/blob/master/qt/log4qt.md](https://github.com/KangLin/Documents/blob/master/qt/log4qt.md)
 
 ## 介绍
 
@@ -48,7 +51,7 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
     |C++  |  ::  |A::B::C |
 
   + 使用 Log4Qt::Logger* logger = Log4Qt::Logger::logger(category); 得 Logger* 。
-  它在内建立与父的关系。例如：
+  它在内部建立与父的关系。例如：
   
         Log4Qt::Logger* qrlogger = Log4Qt::Logger::logger("Qt.RabbitCommon.Logger");
         
@@ -65,32 +68,38 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
 
 ##### 输出日志
 
-- 流式：
+- C++方式（流式）：
 
-        Log4Qt::Logger* logger = Log4Qt::Logger::rootLogger();
-        logger->debug() << "Hello rootLogger";
+```C++
+Log4Qt::Logger* logger = Log4Qt::Logger::rootLogger();
+logger->debug() << "Hello rootLogger";
+```
 
 - C 语言方式：
 
-        Log4Qt::Logger* logger = Log4Qt::Logger::logger("Qt.RabbitCommon.Logger");
-        logger->debug("%s", "Hello Qt.RabbitCommon.Logger");
-        Log4Qt::Logger* main = Log4Qt::Logger::logger("main");
-        main->debug("Hello main");
+```C++
+Log4Qt::Logger* logger = Log4Qt::Logger::logger("Qt.RabbitCommon.Logger");
+logger->debug("%s", "Hello Qt.RabbitCommon.Logger");
+Log4Qt::Logger* main = Log4Qt::Logger::logger("main");
+main->debug("Hello main");
+```
 
 ##### 使用宏
 
 - 普通
 
-        LOG4QT_DECLARE_STATIC_LOGGER(logger, "Qt.RabbitCommon.Logger")
-        logger()->debug() << "Hello Qt.RabbitCommon.Logger";
+```C++
+LOG4QT_DECLARE_STATIC_LOGGER(logger, "Qt.RabbitCommon.Logger")
+logger()->debug() << "Hello Qt.RabbitCommon.Logger";
+```
 
 - 在 Qt 类中使用，必须是继承 QObject 的类
-  + 在类的头文件中定义：  **LOG4QT_DECLARE_QCLASS_LOGGER** 。
+  + 在类的头文件中，类开始处定义：  **LOG4QT_DECLARE_QCLASS_LOGGER** 。
   + 使实现文件中使用用宏 **l4qFatal**、**l4qError**、**l4qWarn**、**l4qInfo**、**l4qDebug**、**l4qTrace** 输出日志
   + 例子：
     - 在类的头文件使用 **LOG4QT_DECLARE_QCLASS_LOGGER** 定义 Logger*
  
-        ```C
+        ```C++
         //file: counter.h
         
         #include qobject.h
@@ -110,7 +119,7 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
         
    + 在实现文件使用宏 **l4qFatal**、**l4qError**、**l4qWarn**、**l4qInfo**、**l4qDebug**、**l4qTrace**  输出日志
    
-        ```
+        ```C++
         //file: counter.cpp
         
         #include counter.h
@@ -123,6 +132,7 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
         {
             if (preset < 0)
             {
+                // C 语言方式
                 l4qWarn("Invalid negative counter preset %1. Using 0 instead.", preset);
                 // 或者使用流式
                 l4qWarn() << "Invalid negative counter preset" << preset << ". Using 0 instead."
@@ -195,7 +205,7 @@ Layouts提供四种日志输出样式，如根据HTML样式、自由指定样式
 
 ### 例子
 
-```
+```C++
 include "log4qt/consoleappender.h"
 include "log4qt/logger.h"
 include "log4qt/ttcclayout.h"
@@ -221,15 +231,18 @@ Log4Qt::Logger::logger(QLatin1String("My Logger"))->info("Hello World!");
 Log4Qt 可以输出使用 Qt 的日志输出函数产生的日志。
 使用 LogManager::setHandleQtMessages(bool handleQtMessages) 打开或关闭输出 Qt 日志函数产生的日志。
 
-- qDebug 类似 Log4Qt 的根 Logger
+- qDebug() 函数参数为空，类似 Log4Qt 的根 Logger 。
 
         qDebug() << "Hell world";
       
 - **QLoggingCategory** 类似 Log4Qt 的非根 Logger。
-使用 **qCWarning()**、**qCDebug()**、**qCWarning()**、**qCInfo()**、**qCCritical()** 输出日志
+使用 **qCWarning()**、**qCDebug()**、**qCWarning()**、**qCInfo()**、**qCCritical()** 输出日志。
+也可以使用 **qWarning()**、**qDebug()**、**qWarning()**、**qInfo()**、**qCritical()** 输出日志。
 
         QLoggingCategory Logger("RabbitCommon.Logger");
         qCCritical(Logger) << "Log folder is empty";
+        //或者
+        qCritical(Logger) << "Log folder is empty";
         
 - QLoggingCategory 配置规则：
 
@@ -237,7 +250,7 @@ Log4Qt 可以输出使用 Qt 的日志输出函数产生的日志。
 
         <category>[.<type>] = true|false
 
-<category\> 是类别的名称，可能使用 * 作为第一个或最后一个字符的通配符，或在两个位置。可选<type>选项必须是debug、 info、 warning、 或者 critical。不符合此方案的行将被忽略。
+<category\> 是类别的名称，可能使用 * 作为第一个或最后一个字符的通配符，或在两个位置。可选<type>选项必须是 debug、 info、 warning、 或者 critical。不符合此方案的行将被忽略。
 规则按文本顺序（从第一个到最后一个）进行评估。也就是说，如果两个规则应用于类别/类型，则稍后出现的规则将应用。
 规则可以通过 setFilterRules() 设置过滤器规则：
 
