@@ -14,13 +14,13 @@ Log4Qt 有三个主要的组件：
 - Appender (输出源):日志要输出的地方。
 - Layout(布局):日志以何种形式输出。
 
-### Logger
+### Logger(记录器)
 
-Logger 在头文件 logger.h 中声明。
+Logger(记录器) 在头文件 logger.h 中声明。
 
-分为根 Logger 和非根 Logger(类别)两类。
+分为根记录器(root logger) 和非根记录器(用于类别)两类。
 
-非根 Logger 用于不同类别(category)的日志。
+非根记录器用于控制不同类别(category)的日志输出。
 
 类别(category)名字格式：
 
@@ -33,13 +33,13 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
 
 #### 使用
 
-##### 得到 Logger
+##### 得到 Logger(记录器)
 
-- 得到根 Logger
+- 得到根记录器(root logger)
 
         Log4Qt::Logger* logger = Log4Qt::Logger::rootLogger();
 
-- 得到非根 Logger。非根 Logger 用于不同类别的日志。
+- 得到非根记录器(logger)。非根记录器(logger)用于控制不同类别(category)的日志输出。
 
         Log4Qt::Logger* logger = Log4Qt::Logger::logger(category);
 
@@ -58,11 +58,11 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
      如果 "RabbitCommon" 不存在，则建立一个 "RabbitCommon" Logger, 并与 qrlogger 建立父关系。如果 "Qt" Logger 不存在，则建立一个 "Qt" Logger，并与 "RabbitCommon" Logger 建立父关系。
 
 - 使用宏 LOG4QT_DECLARE_STATIC_LOGGER
-  + 得到根Logger
+  + 得到根记录器(root logger)
   
         LOG4QT_DECLARE_STATIC_LOGGER(logger,)
 
-  + 得到非根Logger
+  + 得到非根记录器(Logger)
 
         LOG4QT_DECLARE_STATIC_LOGGER(logger, "Qt.RabbitCommon.Logger")
 
@@ -71,15 +71,23 @@ Logger 中被分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五�
 - C++方式（流式）：
 
 ```C++
+//根记录器(root logger)
 Log4Qt::Logger* logger = Log4Qt::Logger::rootLogger();
 logger->debug() << "Hello rootLogger";
+//非根记录器(Logger)
+Log4Qt::Logger* logRabbitCommon = Log4Qt::Logger::logger("Qt.RabbitCommon.Logger");
+logRabbitCommon->debug() << "Hello Qt.RabbitCommon.Logger";
 ```
 
 - C 语言方式：
 
 ```C++
-Log4Qt::Logger* logger = Log4Qt::Logger::logger("Qt.RabbitCommon.Logger");
-logger->debug("%s", "Hello Qt.RabbitCommon.Logger");
+//根记录器(root logger)
+Log4Qt::Logger* logger = Log4Qt::Logger::rootLogger();
+logger->debug("Hello rootLogger");
+//非根记录器(Logger)
+Log4Qt::Logger* logRabbitCommon = Log4Qt::Logger::logger("Qt.RabbitCommon.Logger");
+logRabbitCommon->debug("%s", "Hello Qt.RabbitCommon.Logger");
 Log4Qt::Logger* main = Log4Qt::Logger::logger("main");
 main->debug("Hello main");
 ```
@@ -141,9 +149,9 @@ logger()->debug() << "Hello Qt.RabbitCommon.Logger";
         }
         ```
         
-### Appender
+### Appender(输出源)
 
-适配器（Appender) 允许把日志输出到不同的地方，如控制台（Console）、文件（Files）等，可以根据天数或者文件大小产生新的文件，可以以流的形式发送到其它地方等等。
+输出源（Appender) 允许把日志输出到不同的地方，如控制台（Console）、文件（Files）等，可以根据天数或者文件大小产生新的文件，可以以流的形式发送到其它地方等等。
 #### 常使用的类如下：
 
 |      类名        |        配置名                    |说明   |
@@ -155,16 +163,16 @@ logger()->debug() << "Hello Qt.RabbitCommon.Logger";
 |RollingFileAppender| org.apache.log4j.RollingFileAppender|文件大小到达指定尺寸的时候产生一个新的文件|
 |WriterAppender|org.apache.log4j.WriterAppender|将日志信息以流格式发送到任意指定的地方|
 
-所有的注册适配器请详见：[https://github.com/MEONMedical/Log4Qt/blob/master/src/log4qt/helpers/factory.cpp](https://github.com/MEONMedical/Log4Qt/blob/1dc0b05cf7b621026fa40d58d165e765bd8e0750/src/log4qt/helpers/factory.cpp#L433) 中下面函数：
+所有的注册 Appender(输出源)请详见：[https://github.com/MEONMedical/Log4Qt/blob/master/src/log4qt/helpers/factory.cpp](https://github.com/MEONMedical/Log4Qt/blob/1dc0b05cf7b621026fa40d58d165e765bd8e0750/src/log4qt/helpers/factory.cpp#L433) 中下面函数：
 
         void Factory::registerDefaultAppenders()
     
-#### Logger 设置 Appender
-使用 Logger 成员函数 virtual void addAppender(const AppenderSharedPtr &appender); 设置 Appender
+#### Logger 设置 Appender(输出源)
+使用 Logger 成员函数 virtual void addAppender(const AppenderSharedPtr &appender); 设置 Appender(输出源)
 
-### Layout
-实现日志输出格式。可以在Appenders的后面附加Layouts来完成这个功能。
-Layouts提供四种日志输出样式，如根据HTML样式、自由指定样式、包含日志级别与信息的样式和包含日志时间、线程、类别等信息的样式。
+### Layout(布局)
+实现日志输出格式。可以在 Appender(输出源) 的后面附加 Layout(布局) 来完成这个功能。
+Appender(输出源)提供四种日志输出样式，如根据HTML样式、自由指定样式、包含日志级别与信息的样式和包含日志时间、线程、类别等信息的样式。
 #### 常使用的类如下：
 
 |      类名        |        配置名                    |说明|
@@ -174,7 +182,7 @@ Layouts提供四种日志输出样式，如根据HTML样式、自由指定样式
 |TTCCLayout|org.apache.log4j.TTCCLayout|包含日志产生的时间、线程、类别等信息|
 |XMLLayout|org.apache.log4j.XMLLayout|XML|
 
-所有注册的Layout，请详见：[https://github.com/MEONMedical/Log4Qt/blob/master/src/log4qt/helpers/factory.cpp](https://github.com/MEONMedical/Log4Qt/blob/1dc0b05cf7b621026fa40d58d165e765bd8e0750/src/log4qt/helpers/factory.cpp#L505) 下列函数：
+所有注册的 Layout(布局)，请详见：[https://github.com/MEONMedical/Log4Qt/blob/master/src/log4qt/helpers/factory.cpp](https://github.com/MEONMedical/Log4Qt/blob/1dc0b05cf7b621026fa40d58d165e765bd8e0750/src/log4qt/helpers/factory.cpp#L505) 下列函数：
 
         void Factory::registerDefaultLayouts()
         
@@ -201,7 +209,7 @@ Layouts提供四种日志输出样式，如根据HTML样式、自由指定样式
 
 #### 设置
 
-使用 Appender 成员函数 virtual void setLayout(const LayoutSharedPtr &layout) 设置 layout
+使用 Appender(输出源) 成员函数 virtual void setLayout(const LayoutSharedPtr &layout) 设置 Layout(布局)。
 
 ### 例子
 
@@ -231,19 +239,22 @@ Log4Qt::Logger::logger(QLatin1String("My Logger"))->info("Hello World!");
 Log4Qt 可以输出使用 Qt 的日志输出函数产生的日志。
 使用 LogManager::setHandleQtMessages(bool handleQtMessages) 打开或关闭输出 Qt 日志函数产生的日志。
 
-- qDebug() 函数参数为空，类似 Log4Qt 的根 Logger 。
+- qDebug() 函数参数为空，类似 Log4Qt 的根记录器(root logger) 。
 
-        qDebug() << "Hell world";
-      
-- **QLoggingCategory** 类似 Log4Qt 的非根 Logger。
+   ```c++
+   qDebug() << "Hell world";
+   ```
+
+- **QLoggingCategory** 类似 Log4Qt 的非根记录器 (Logger) 。
 使用 **qCWarning()**、**qCDebug()**、**qCWarning()**、**qCInfo()**、**qCCritical()** 输出日志。
 也可以使用 **qWarning()**、**qDebug()**、**qWarning()**、**qInfo()**、**qCritical()** 输出日志。
 
-        QLoggingCategory Logger("RabbitCommon.Logger");
-        qCCritical(Logger) << "Log folder is empty";
-        //或者
-        qCritical(Logger) << "Log folder is empty";
-        
+   ```c++
+   QLoggingCategory Logger("RabbitCommon.Logger");
+   qCDebug(Logger) << "Log folder is empty";
+   //或者
+   qDebug(Logger) << "Log folder is empty";
+   ```
 - QLoggingCategory 配置规则：
 
 日志记录规则允许您以灵活的方式启用或禁用类别的日志记录。规则在文本中指定，其中每行必须具有以下格式：
@@ -321,7 +332,7 @@ QtProject/qtlogging.ini 文件在 QStandardPaths::GenericConfigLocation 返回�
         #log4j.qtLogging.filterRules=
         #log4j.qtLogging.messagePattern=
         
-#### 配置根 Logger
+#### 配置根记录器 （root logger)
 其语法
 
         log4j.rootLogger = [level], appenderName1, appenderName2, ...
@@ -342,7 +353,7 @@ QtProject/qtlogging.ini 文件在 QStandardPaths::GenericConfigLocation 返回�
 
 - appenderName 是appender的名字，指定输出到哪儿
 
-#### 设置非根logger
+#### 设置非根记录器 (logger)
 语法：
 
         log4j.logger.categoryName = [level], appenderName1, appenderName2, ...
@@ -355,7 +366,7 @@ QtProject/qtlogging.ini 文件在 QStandardPaths::GenericConfigLocation 返回�
 |C++  |  ::  |A::B::C |
 
 
-##### 设置非根 Logger 是否输出到其父 Logger 中
+##### 设置非根记录器 (Logger) 是否输出到其父记录器 (Logger) 中
 非根 Logger 日志默认是同时输出到log4j.rootLogger所有配置的日志中的，如何能只让它们输出到自己指定的日志中呢？用下面配置：
 
 语法：
@@ -373,12 +384,12 @@ QtProject/qtlogging.ini 文件在 QStandardPaths::GenericConfigLocation 返回�
 |JAVA |  .   |A.B.c   |
 |C++  |  ::  |A::B::C |
 
-如果不想输出到log4j.rootLogger所有配置的日志，而只是想输出到log4j.rootLogger某一配置（例如：console),则：
+如果不想输出到 log4j.rootLogger 所有配置的日志，而只是想输出到 log4j.rootLogger 某一配置（例如：console),则：
 
         log4j.logger.main = [level], console
         log4j.additivity.main = false
 
-#### 配置 Appender
+#### 配置输出源 (Appender)
 语法
 
         log4j.appender.appenderName = className
@@ -396,20 +407,20 @@ className 有以下几种类型：
 |org.apache.log4j.RollingFileAppender|文件大小到达指定尺寸的时候产生一个新的文件|
 
 - ConsoleAppender选项
-  + Threshold=WARN：指定日志信息的最低输出级别，默认为DEBUG。
-  + ImmediateFlush=true：表示所有消息都会被立即输出，设为false则不输出，默认值是true。
-  + Target=System.err：默认值是System.out。
+  + Threshold=WARN：指定日志信息的最低输出级别，默认为 DEBUG。
+  + ImmediateFlush=true：表示所有消息都会被立即输出，设为 false 则不输出，默认值是 true。
+  + Target=System.err：默认值是 System.out 。(System.out、 System.err)
 - FileAppender选项
-  + Threshold=WARN：指定日志信息的最低输出级别，默认为DEBUG。
-  + ImmediateFlush=true：表示所有消息都会被立即输出，设为false则不输出，默认值是true。
-  + Append=false：true表示消息增加到指定文件中，false则将消息覆盖指定的文件内容，默认值是true。
-  + File=D:/logs/logging.log4j：指定消息输出到logging.log4j文件中。
+  + Threshold=WARN：指定日志信息的最低输出级别，默认为 DEBUG。
+  + ImmediateFlush=true：表示所有消息都会被立即输出，设为 false 则不输出，默认值是 true。
+  + Append=false：true表示消息增加到指定文件中，false 则将消息覆盖指定的文件内容，默认值是 true。
+  + File=D:/logs/logging.log4j：指定消息输出到 logging.log4j 文件中。
 - DailyRollingFileAppender选项
-  + Threshold=WARN #指定日志信息的最低输出级别，默认为DEBUG。
-  + ImmediateFlush=true：表示所有消息都会被立即输出，设为false则不输出，默认值是true。
-  + Append=false：true表示消息增加到指定文件中，false则将消息覆盖指定的文件内容，默认值是true。
-  + File=D:/logs/logging.log4j：指定当前消息输出到logging.log4j文件中。
-  + DatePattern=’.'yyyy-MM：每月滚动一次日志文件，即每月产生一个新的日志文件。当前月的日志文件名为logging.log4j，前一个月的日志文件名为logging.log4j.yyyy-MM。
+  + Threshold=WARN #指定日志信息的最低输出级别，默认为 DEBUG。
+  + ImmediateFlush=true：表示所有消息都会被立即输出，设为 false 则不输出，默认值是 true。
+  + Append=false：true表示消息增加到指定文件中，false 则将消息覆盖指定的文件内容，默认值是 true。
+  + File=D:/logs/logging.log4j：指定当前消息输出到 logging.log4j 文件中。
+  + DatePattern=’.'yyyy-MM：每月滚动一次日志文件，即每月产生一个新的日志文件。当前月的日志文件名为 logging.log4j，前一个月的日志文件名为 logging.log4j.yyyy-MM。
 另外，也可以指定按周、天、时、分等来滚动日志文件，对应的格式如下：
     - '.'yyyy-MM：每月
     - '.'yyyy-ww：每周
@@ -417,21 +428,21 @@ className 有以下几种类型：
     - '.'yyyy-MM-dd-a：每天两次
     - '.'yyyy-MM-dd-HH：每小时
     - '.'yyyy-MM-dd-HH-mm：每分钟
-- RollingFileAppender选项
-  + Threshold=WARN：指定日志信息的最低输出级别，默认为DEBUG。
-  + ImmediateFlush=true：表示所有消息都会被立即输出，设为false则不输出，默认值是true。
-  + Append=false：true表示消息增加到指定文件中，false则将消息覆盖指定的文件内容，默认值是true。
-  + File=D:/logs/logging.log4j：指定消息输出到logging.log4j文件中。
-  + MaxFileSize=100KB：后缀可以是KB, MB 或者GB。在日志文件到达该大小时，将会自动滚动，即将原来的内容移到logging.log4j.1文件中。
-  + MaxBackupIndex=2：指定可以产生的滚动文件的最大数，例如，设为2则可以产生logging.log4j.1，logging.log4j.2两个滚动文件和一个logging.log4j文件。
+- RollingFileAppender 选项
+  + Threshold=WARN：指定日志信息的最低输出级别，默认为 DEBUG。
+  + ImmediateFlush=true：表示所有消息都会被立即输出，设为 false 则不输出，默认值是 true。
+  + Append=false：true 表示消息增加到指定文件中，false 则将消息覆盖指定的文件内容，默认值是 true。
+  + File=D:/logs/logging.log4j：指定消息输出到 logging.log4j 文件中。
+  + MaxFileSize=100KB：后缀可以是KB, MB 或者GB。在日志文件到达该大小时，将会自动滚动，即将原来的内容移到 logging.log4j.1 文件中。
+  + MaxBackupIndex=2：指定可以产生的滚动文件的最大数，例如，设为2则可以产生 logging.log4j.1，logging.log4j.2 两个滚动文件和一个 logging.log4j 文件。
 
-#### 配置 Layout
+#### 配置布局 (Layout)
 语法：
 
         log4j.appender.appenderName.layout = className
         log4j.appender.appenderName.layout.option1 = value1
         …
-        log4j.appender.appenderName.layout.optionN = valueN 
+        log4j.appender.appenderName.layout.optionN = valueN
 
 其中：className可以是下列值之一：
 
@@ -443,8 +454,8 @@ className 有以下几种类型：
 |org.apache.log4j.TTCCLayout   |包含日志产生的时间、线程、类别等等信息|
 
 - HTMLLayout选项
-  + LocationInfo=true：输出java文件名称和行号，默认值是false。
-  + Title=My Logging： 默认值是Log4J Log Messages。
+  + LocationInfo=true：输出 java 文件名称和行号，默认值是 false。
+  + Title=My Logging： 默认值是 Log4J Log Messages。
 - PatternLayout选项：
   + ConversionPattern=%m%n：设定以怎样的格式显示消息。
     - 格式化符号说明：
@@ -477,18 +488,18 @@ className 有以下几种类型：
 logpath=log
 
 #格式化符号说明：
-# %p：输出日志信息的优先级，即DEBUG，INFO，WARN，ERROR，FATAL。
-# %d：输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，如：%d{yyyy/MM/dd HH:mm:ss,SSS}。
-# %r：输出自应用程序启动到输出该log信息耗费的毫秒数。
+# %p：输出日志信息的优先级，即 DEBUG，INFO，WARN，ERROR，FATAL。
+# %d：输出日志时间点的日期或时间，默认格式为 ISO8601，也可以在其后指定格式，如：%d{yyyy/MM/dd HH:mm:ss,SSS}。
+# %r：输出自应用程序启动到输出该 log 信息耗费的毫秒数。
 # %t：输出产生该日志事件的线程名。
-# %l：输出日志事件的发生位置，相当于%c.%M(%F:%L)的组合，包括类全名、方法、文件名以及在代码中的行数。例如：test.TestLog4j.main(TestLog4j.java:10)。
+# %l：输出日志事件的发生位置，相当于 %c.%M(%F:%L) 的组合，包括类全名、方法、文件名以及在代码中的行数。例如：test.TestLog4j.main(TestLog4j.java:10)。
 # %c：输出日志信息所属的类目，通常就是所在类的全名。
 # %M：输出产生日志信息的方法名。
 # %F：输出日志消息产生时所在的文件名称。
 # %L:：输出代码中的行号。
 # %m:：输出代码中指定的具体日志信息。
-# %n：输出一个回车换行符，Windows平台为"\r\n"，Unix平台为"\n"。
-# %x：输出和当前线程相关联的NDC(嵌套诊断环境)，尤其用到像java servlets这样的多客户多线程的应用中。
+# %n：输出一个回车换行符，Windows平台为 "\r\n"，Unix平台为 "\n"。
+# %x：输出和当前线程相关联的 NDC(嵌套诊断环境)，尤其用到像 java servlets 这样的多客户多线程的应用中。
 # %%：输出一个"%“字符。
 # 另外，还可以在%与格式字符之间加上修饰符来控制其最小长度、最大长度、和文本的对齐方式。如：
 # c：指定输出category的名称，最小的长度是20，如果category的名称长度小于20的话，默认的情况下右对齐。
