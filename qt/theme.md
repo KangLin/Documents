@@ -52,3 +52,8 @@ Type＝Scalable
 
 - QIcon::setFallbackThemeName: 设置后备主题
 **注意**：必须在主窗口初始化前使用。
+
+### 使用
+
+- CFrmStyle: https://github.com/KangLin/RabbitCommon/blob/master/Src/FrmStyle/FrmStyle.h
+
