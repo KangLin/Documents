@@ -7,6 +7,7 @@
 - 图标主题规范: https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
   - 中文翻译：https://glavo.site/translate/2019/09/22/icon-theme-spec/
 - 图标命名规范: https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+- A Guide to Using Icon Themes in Qt on All Platforms: https://openapplibrary.org/dev-tutorials/qt-icon-themes
 
 ### 示例
 
