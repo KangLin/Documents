@@ -103,6 +103,8 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 ### 编辑工具：
 
 - notepad++: https://github.com/notepad-plus-plus/notepad-plus-plus
+- NotepadNext: https://github.com/dail8859/NotepadNext
+- notepad--: https://github.com/cxasm/notepad--
 - vim: http://www.vim.org/download.php
 - IDE：
   + eclipse: http://www.eclipse.org/
