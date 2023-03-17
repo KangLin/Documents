@@ -40,6 +40,22 @@
       + libqt5webchannel5-dev
   + [launchpad](https://launchpad.net/~beineri)
 - [qt官网](http://download.qt.io/official_releases/qt/)
+  + qt 在线安装。用国内镜像:
+    - 配置方法: http://mirrors.ustc.edu.cn/help/qtproject.html
+
+      从 https://mirrors.aliyun.com/qt/official_releases/online_installers/ 下载在线安装器。
+
+    - 可以使用以下两种方式之一在安装器中配置使用阿里云源下载 Qt：
+
+      +（推荐）新版本的安装器（4.0.1-1 后）支持 --mirror 命令行参数。在命令行中执行安装器，添加 --mirror https://mirrors.aliyun.com/qt 参数。例如 Windows 下执行当前目录的安装器的命令为 .\qt-unified-windows-x86-online.exe --mirror https://mirrors.aliyun.com/qt；
+
+      + 或在启动安装器后在设置中禁用默认源，添加新源 https://mirrors.aliyun.com/qt/online/qtsdkrepository/linux_x64/root/qt/ （其他版本注意更改地址）。
+  + 国内镜像：
+    - 中国科学技术大学：http://mirrors.ustc.edu.cn/qtproject/
+    - 清华大学：https://mirrors.tuna.tsinghua.edu.cn/qt/
+    - 北京理工大学：http://mirror.bit.edu.cn/qtproject/
+    - 腾讯： https://mirrors.cloud.tencent.com/qt/
+    - 阿里： https://mirrors.aliyun.com/qt/
 
 ### qt install
 - 应用默认安装前缀。
