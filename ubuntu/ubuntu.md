@@ -17,3 +17,13 @@
 - [打包、发布](package.md)
 
 ### [Ubuntu 系统](system.md)
+
+### Ubuntu 系统设置
+
+Ubuntu 系统的用户桌面默认目录设置位置：
+
+~/.config/user-dirs.dirs
+
+语言设置：
+
+~/.config/user-dirs.locale
