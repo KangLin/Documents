@@ -72,6 +72,8 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 - blendar: https://www.blender.org/
 - osg: http://osgearth.org https://github.com/gwaldron/osgearth
 - Open3D: https://github.com/isl-org/Open3D
+- mayo: https://github.com/fougue/mayo
+- FreeCAD: https://github.com/FreeCAD/FreeCAD
 
 ### 网络
 #### 下载工具
