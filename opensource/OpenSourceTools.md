@@ -164,6 +164,9 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 ### IM:
 - [libnice:](https://libnice.freedesktop.org/) P2P 通信库
+- [Jami](https://jami.net/) 
+  - [Code](https://git.jami.net/savoirfairelinux/jami-project)
+  - [github mirror](https://github.com/savoirfairelinux/jami-project)
 
 ### 制做u盘启动盘工具
 
@@ -204,6 +207,10 @@ http://pogostick.net/~pnh/ntpasswd/) [代码](source_code/chntpw-source-140201.z
 
 ## 输入法
 - [华宇拼音输入法核心源码](https://github.com/balloonwj/unispim)
+
+## 其它软件
+- [stellarium](http://stellarium.org/) 虚拟天文馆
+  - [代码](https://github.com/Stellarium/stellarium)
 
 ## 文档
 - [cmake cookbook recipes](https://github.com/dev-cafe/cmake-cookbook)
