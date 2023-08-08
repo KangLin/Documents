@@ -201,6 +201,8 @@ http://pogostick.net/~pnh/ntpasswd/) [代码](source_code/chntpw-source-140201.z
 
 ### 文件比较
 - [winmerge](http://winmerge.org/) [代码位置](http://sourceforge.net/projects/winmerge/)
+- [meld](https://meldmerge.org/)
+  - [代码](https://gitlab.gnome.org/GNOME/meld/)
 
 ### 反编译
 - [cutter](https://github.com/rizinorg/cutter)
