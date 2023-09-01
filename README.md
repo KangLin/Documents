@@ -31,3 +31,5 @@
 - [网络](net/README.md)
 - [c/c++语言](c/README.md)
 - [Visual Studio 各版本密钥](c/VisualStudioKey.md)
+- [加密](加密.pdf): https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/cryptography-portal
+- [Windows证书注册API](Windows证书注册API.pdf): https://learn.microsoft.com/zh-cn/windows/win32/seccertenroll/about-x-509-public-key-certificates
