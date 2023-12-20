@@ -29,6 +29,7 @@
 - [书](Books.md)
 - [Windows](Windows)
 - [网络](net/README.md)
+- [服务](server/README.md)
 - [c/c++语言](c/README.md)
 - [Visual Studio 各版本密钥](c/VisualStudioKey.md)
 - [加密](加密.pdf): https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/cryptography-portal
