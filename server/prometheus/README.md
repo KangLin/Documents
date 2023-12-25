@@ -84,8 +84,46 @@ Promethus 有以下特点：
 
         sudo systemctl stop prometheus
 
-  - 查看：在浏览器中打开 http://127.0.0.1:9090
-  - 配置
-    打开配置文件：/etc/prometheus/prometheus.yml
+  - 查看：在浏览器中打开 http://127.0.0.1:9090 。在 Status -> Targets：
+
+![默认配置](image/init_target.png)
+
+### Prometheus 配置
+- 配置文件：/etc/prometheus/prometheus.yml
 
         sudo vim /etc/prometheus/prometheus.yml
+
+### 示例
+
+配置一个节点导出者：
+
+- 安装：
+
+        sudo apt install prometheus-node-exporter
+
+- 启动：
+
+        sudo systemctl start prometheus-node-exporter
+
+- 查看：
+
+        sudo systemctl status prometheus-mode-exporter
+
+- 在 Prometheus 中配置节点导出者：
+
+        sudo vim /etc/prometheus/prometheus.yml
+
+查看是否有下列内容（默认会配置）。如果没有，则加上：
+
+```
+  - job_name: node
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['localhost:9100']
+```
+
+- 查看：在浏览器中打开 http://127.0.0.1:9090 。在 Status -> Targets：
+
+![默认配置](image/node_target.png)
+
