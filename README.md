@@ -7,7 +7,7 @@
   + [打包、发布](ubuntu/package.md)
   + [launchpad](ubuntu/launchpad.md)
 - [Qt](qt/qt.md)
-- [Android]
+- Android
   + [Android 签名](android/Signature.md)
   + [Android 归档文件(aar)](android/aar.md)
 - [自动化集成](ci/README.md)
