@@ -24,8 +24,14 @@ dumpbin /LINKERMEMBER os.lib
 nm a.lib
 ```
 
-- 查看程序格式
+#### 查看程序格式
 
 ```
 readelf -d a.dll
+```
+
+#### 查看程序动态库链接
+
+```
+ldd a.dll
 ```
