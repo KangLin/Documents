@@ -34,7 +34,9 @@
 
 2.2. 同时在 https://mentors.debian.net/ 创建一个用户，设置中填写公钥。
 
-       $ gpg --export -a > public_key.txt
+       $ gpg --export --export-options export-minimal --armor [密钥id 的输出] > public_key.txt
+
+参见: [GPG](../base/gpg.md)
 
 2.3. 用 debsign 工具对打包后的 .dsc 、 .changes 文件签名
 
