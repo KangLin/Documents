@@ -3,9 +3,13 @@
 
 作者：康林(kl222@126.com)
 
-- [Ubuntu](ubuntu/ubuntu.md)
-  + [打包、发布](ubuntu/package.md)
-  + [launchpad](ubuntu/launchpad.md)
+- Linux
+  - [编译内核](linux/BuildKernel.md)
+  - [Ubuntu](ubuntu/ubuntu.md)
+    + [打包、发布](ubuntu/package.md)
+    + [launchpad](ubuntu/launchpad.md)
+  - Debian
+    - [在 arm64 上安装](debian/arm64/install.md)
 - [Qt](qt/qt.md)
 - Android
   + [Android 签名](android/Signature.md)
