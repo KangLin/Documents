@@ -718,6 +718,30 @@ GPG 将会自动在本地寻找对应的私钥，如果找不到将会解密失�
       l@l:~$ cd ~/.gnupg/private-keys-v1.d
       l@l:~/.gnupg/private-keys-v1.d$ rm 7CEB022E02A216D66616102FCC21CC4ECBBF822C.key
 
+现在，如果运行 --list-secret-keys 命令将出现问题，它将显示主密钥丢失（# 表示不可用）：
+      
+      l@l:~/.gnupg/openpgp-revocs.d$ gpg --list-secret-keys
+      /home/l/.gnupg/pubring.kbx
+      --------------------------
+      sec#  rsa4096 2021-08-02 [SC]
+            08C9D8FE20930F2A9BDF565AB5AF93007DC8E9E7
+      uid             [ ?? ] Kang Lin <kl222@126.com>
+      ssb   rsa4096 2021-08-02 [E]
+      ssb   rsa4096 2024-01-11 [A]
+      ssb   rsa4096 2024-01-11 [S]
+      ssb   rsa4096 2024-01-18 [S]
+
+- 参考： https://linux.cn/article-10402-1.html
+
+#### 删除吊销证书
+
+你应该去删除的另一个文件是吊销证书（删除之前，确保你的备份中有它），它是使用你的主密钥自动创建的。吊销证书允许一些人去永久标记你的证书为吊销状态，这意味着它无论在任何用途中将不再被使用或信任。一般是使用它来吊销由于某些原因不再受控的一个密钥 —— 比如，你丢失了密钥密码。
+
+与使用主密钥一样，如果一个吊销证书泄露到恶意者手中，他们能够使用它去破坏你的开发者数字身份，因此，最好是从你的家目录中删除它。
+
+      l@l:~$ cd ~/.gnupg/openpgp-revocs.d
+      l@l:~/.gnupg/openpgp-revocs.d$ rm 08C9D8FE20930F2A9BDF565AB5AF93007DC8E9E7.rev 
+
 - 参考： https://linux.cn/article-10402-1.html
 
 #### 将子密钥移到一个硬件设备中

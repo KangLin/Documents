@@ -11,6 +11,8 @@
 [第 4 章 debian 目录中的必需内容](https://www.debian.org/doc/manuals/maint-guide/dreq.zh-cn.html)
 [第 5 章 debian 目录下的其他文件](https://www.debian.org/doc/manuals/maint-guide/dother.zh-cn.html)
 - 构建软件包。详见：[第 6 章 构建软件包](https://www.debian.org/doc/manuals/maint-guide/build.zh-cn.html)
+  
+        dpkg-buildpackage -S
 
 ##### 参考
 - [Debian 软件包制作介绍](https://www.debian.org/doc/manuals/packaging-tutorial/packaging-tutorial.en.pdf)
