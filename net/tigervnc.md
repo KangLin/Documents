@@ -1,4 +1,6 @@
 # 如何在 Debian 12 上安装 VNC 服务器
+作者：康 林 <kl222@126.com>
+
 -----------------------------------------
 
 虚拟网络计算 (VNC) 是一种桌面共享协议，允许您使用 VNC 客户端软件远程控制计算机。 VNC 工作在 GUI（图形用户界面）环境中，它使用远程帧缓冲区 (RFB) 协议通过网络传输鼠标和键盘输入的移动。
@@ -47,6 +49,9 @@
 TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 
 - 目录/etc/tigervnc/：TigerVNC Server的主要配置目录。在此目录中，您应该看到用于存储用户的文件vncserver.users，以及作为将自动加载的主要TigerVNC配置的vncserver-config-mandatory文件。
+  - vncserver.users
+  - vncserver-config-mandatory
+  - vncserver-config-defaults
 - ~/.vnc/config：TigerVNC Server 提供了一个 systemd 服务文件，可让您轻松运行 VNC Server 桌面。
 
 ### 初始化VNC服务器
@@ -60,7 +65,7 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 通过执行以下命令初始化 VNC 服务器。通过此操作，您将设置 VNC 服务器密码和仅查看密码（可选）。
 
         ```bash
-        l@lyj:/home$ vncserver 
+        l@debian-lyj:~$ vncserver 
         perl: warning: Setting locale failed.
         perl: warning: Please check that your locale settings:
 	        LANGUAGE = (unset),
@@ -92,23 +97,30 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 
 输入 VNC 服务器的新密码，并在询问时重复。然后，键入 n 以禁用仅查看密码，或键入 y 以启用仅查看密码。
 
-现在您已经初始化了 VNC 服务器，VNC 服务器应该在“主机名:x”上运行。主机名是系统主机名，x 是桌面编号。在此示例中，VNC 服务器在 lyj:1 上运行。
+现在您已经初始化了 VNC 服务器，VNC 服务器应该在`主机名:x`上运行。`主机名`是系统主机名，`x` 是桌面编号。在此示例中，VNC 服务器在 `lyj:1` 上运行。
+如果你要初始化其它 `x` 桌面：
+
+        l@debian-lyj:~$ vncserver :x
 
 ### 配置VNC服务器和桌面环境
 
 至此，您已经配置了 VNC 服务器及其密码。接下来，您将配置 VNC 服务器并设置默认桌面环境。
 
-在配置 VNC Server 之前，请通过执行以下命令停止当前的 VNC Server 进程。在以下示例中，我们将停止 VNC 服务器 lyj:1。
+在配置 VNC Server 之前，请通过执行以下命令停止当前的 VNC Server 进程。在以下示例中，我们将停止 VNC 服务器 `lyj:1` 。
 
-        vncserver -kill lyj:1
+        l@debian-lyj:~$ vncserver -kill lyj:1
 
 现在，运行以下命令来检查系统上可用的桌面环境。
 
-        ls /usr/share/xsessions/
+        l@debian-lyj:~$ ls /usr/share/xsessions/
+        gnome.desktop       plasma.desktop        lxqt.desktop
 
-在以下输出中，lxqt.desktop 确认 lxqt 可用。
+在以上输出中：
+- gnome.desktop: 确认 gnome 桌面可用。
+- plasma.desktop: 确认 KDE 桌面可用。
+- lxqt.desktop: 确认 lxqt 桌面可用。
 
-接下来，使用以下 vim 编辑器命令创建新的 VNC 服务器配置 ~/.vnc/config。这是每用户配置，这意味着每个用户可以有不同的配置。
+接下来，使用以下 vim 编辑器命令创建新的 VNC 服务器配置 ~/.vnc/config 。这是每个用户的配置，这意味着每个用户可以有不同的配置。
 
         vim ~/.vnc/config
 
@@ -150,7 +162,7 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 
         sudo systemctl status tigervncserver@:1.service
 
-至此，您已经使用 TigerVNC 和 XFCE 作为默认桌面环境完成了 VNC 服务器安装。接下来，您将通过 SSH 隧道安全地连接到 VNC 服务器。
+至此，您已经使用 TigerVNC 和 lxqt 作为默认桌面环境完成了 VNC 服务器安装。接下来，您将通过 SSH 隧道安全地连接到 VNC 服务器。
 
 ### 通过 SSH 隧道连接到 VNC 服务器
 
