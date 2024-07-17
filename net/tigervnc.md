@@ -60,7 +60,7 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 通过执行以下命令初始化 VNC 服务器。通过此操作，您将设置 VNC 服务器密码和仅查看密码（可选）。
 
         ```bash
-        l@lyj:/home$ vncserver 
+        l@debian-lyj:~$ vncserver 
         perl: warning: Setting locale failed.
         perl: warning: Please check that your locale settings:
 	        LANGUAGE = (unset),
@@ -93,6 +93,9 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 输入 VNC 服务器的新密码，并在询问时重复。然后，键入 n 以禁用仅查看密码，或键入 y 以启用仅查看密码。
 
 现在您已经初始化了 VNC 服务器，VNC 服务器应该在“主机名:x”上运行。主机名是系统主机名，x 是桌面编号。在此示例中，VNC 服务器在 lyj:1 上运行。
+如果你要初始化其它 x 桌面：
+
+        l@debian-lyj:~$ vncserver :x
 
 ### 配置VNC服务器和桌面环境
 
@@ -100,11 +103,12 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 
 在配置 VNC Server 之前，请通过执行以下命令停止当前的 VNC Server 进程。在以下示例中，我们将停止 VNC 服务器 lyj:1。
 
-        vncserver -kill lyj:1
+        l@debian-lyj:~$ vncserver -kill lyj:1
 
 现在，运行以下命令来检查系统上可用的桌面环境。
 
-        ls /usr/share/xsessions/
+        l@debian-lyj:~$ ls /usr/share/xsessions/
+        gnome.desktop       plasma.desktop        lxqt.desktop
 
 在以下输出中，lxqt.desktop 确认 lxqt 可用。
 
