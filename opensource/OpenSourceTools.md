@@ -174,13 +174,14 @@ git clone https://github.com/arut/nginx-rtmp-module.git
 
 ### 制做u盘启动盘工具
 
-- [Ventoy](https://github.com/ventoy/Ventoy): 支持 Windows、Linux
+- [Ventoy](https://github.com/ventoy/Ventoy): 支持 Windows、Linux、Mac
 - [RUFUS](https://github.com/pbatard/rufus): 支持 Windows
 - [yumi](http://www.pendrivelinux.com/yumi-multiboot-usb-creator/)
 - [pendrivelinux](http://www.pendrivelinux.com/)
-- [Universal USB Installer](http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/)
-- UNetbootin: [https://github.com/unetbootin/unetbootin](https://github.com/unetbootin/unetbootin)
+- [Universal USB Installer](http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/): 支持 Windows
+- UNetbootin: [https://github.com/unetbootin/unetbootin](https://github.com/unetbootin/unetbootin): 支持 Windows、Linux、Mac
 - [UEFI:NTFS - Boot NTFS or exFAT partitions from UEFI](https://github.com/pbatard/uefi-ntfs)
+- [etchere](https://github.com/balena-io/etcher/): 支持 Windows、Linux、Mac
 
 #### UEFI
 - [UEFITool](https://github.com/LongSoft/UEFITool)
