@@ -44,9 +44,11 @@ Ubuntu 系统的用户桌面默认目录设置位置：
 
         $ ecryptfs-setup-private
 
-它将要求输入登录密码和安装密码。登录密码与您的正常登录密码相同。安装密码用于派生文件加密主密钥。将其留空以生成一个，因为这样更安全。注销并重新登录。
+[![ecryptfs-setup-private]](image/ecryptfs-setup-private.jpg)
 
-您会注意到，eCryptFS 默认情况下创建了两个目录：您的主目录中的 Private 和 .Private。 ~/.Private目录包含加密数据，您可以在~/Private目录中访问相应的解密数据。当您登录时，~/.Private目录会自动解密并映射到~/Private目录，以便您可以访问它。当您注销时，~/Private 目录会自动卸载，并且 ~/Private 目录中的内容会加密回 ~/.Private 目录中。
+它将要求输入登录密码和文件加密密码。登录密码与您的正常登录密码相同。文件加密密码是用于文件加密的主密钥。将其留空以生成一个随机的主密钥，因为这样更安全。注销并重新登录。文件加密码密码（它被登录密码加密）默认放在 ~/.ecryptfs/wrapped-passphrase 中。
+
+您会注意到，eCryptFS 默认情况下创建了两个目录：您的主目录中的 Private 和 .Private。 ~/.Private 目录包含加密数据，您可以在 ~/Private 目录中访问相应的解密数据。当您登录时，~/.Private 目录会自动解密并映射到 ~/Private 目录，以便您可以访问它。当您注销时，~/Private 目录会自动卸载，并且 ~/Private 目录中的内容会加密回 ~/.Private 目录中。
 
 eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 目录中，而无需您输入密码，这是通过 eCryptFS PAM 模块 来完成的。
 
