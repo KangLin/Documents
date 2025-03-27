@@ -65,7 +65,7 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 通过执行以下命令初始化 VNC 服务器。通过此操作，您将设置 VNC 服务器密码和仅查看密码（可选）。
 
         ```bash
-        l@debian-lyj:~$ vncserver 
+        l@debian-lyj:~$ vncserver #启动 vnc 服务器
         perl: warning: Setting locale failed.
         perl: warning: Please check that your locale settings:
 	        LANGUAGE = (unset),
@@ -101,6 +101,8 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 如果你要初始化其它 `x` 桌面：
 
         l@debian-lyj:~$ vncserver :x
+
+此时，你可以用客户端连接它，但它只是一个灰色的界面。
 
 ### 配置VNC服务器和桌面环境
 
@@ -139,6 +141,7 @@ TigerVNC 服务器安装完成后，查看一些重要的 TigerVNC 配置：
 - Geometry=1200x720：将显示配置为 1200x720
 - localhost：仅在本地主机中运行 VNC 服务器
 - alwaysshared：始终将传入连接视为共享连接
+- securitytypes: 安全类型：vncauth,tlsvnc
 
 ### 为 TigerVNC 服务器添加用户
 
