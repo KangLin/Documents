@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0" version="27.0.4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0" version="27.0.5">
   <diagram name="第 1 页" id="dgmme4plO3iuTsz4I80s">
     <mxGraphModel dx="2492" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -46,7 +46,7 @@
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=diamondThin;startFill=0;endArrow=none;" parent="1" source="vUk5pLuXRZSB5UFMCCAO-18" target="vUk5pLuXRZSB5UFMCCAO-25" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-1" value="void ssh_socket_set_callbacks(ssh_socket s, ssh_socket_callbacks callbacks)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="vUk5pLuXRZSB5UFMCCAO-30">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-1" value="void ssh_socket_set_callbacks(ssh_socket s, ssh_socket_callbacks callbacks)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="vUk5pLuXRZSB5UFMCCAO-30" vertex="1" connectable="0">
           <mxGeometry x="0.5005" y="3" relative="1" as="geometry">
             <mxPoint x="-15" y="-22" as="offset" />
           </mxGeometry>
@@ -121,6 +121,11 @@
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="vUk5pLuXRZSB5UFMCCAO-38" target="vUk5pLuXRZSB5UFMCCAO-43" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-9" value="session-&amp;gt;packet_callbacks" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="vUk5pLuXRZSB5UFMCCAO-47" vertex="1" connectable="0">
+          <mxGeometry x="-0.3374" relative="1" as="geometry">
+            <mxPoint x="-75" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-38" value="void ssh_packet_process(ssh_session session, uint8_t type)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="820" y="1963" width="330" height="30" as="geometry" />
         </mxCell>
@@ -140,23 +145,23 @@
           <mxGeometry y="78" width="200" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-44" value="default_packet_handlers" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1560" y="2116" width="140" height="30" as="geometry" />
+          <mxGeometry x="1731" y="2116" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;startFill=0;dashed=1;" parent="1" source="vUk5pLuXRZSB5UFMCCAO-43" target="vUk5pLuXRZSB5UFMCCAO-44" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="vUk5pLuXRZSB5UFMCCAO-46" value="void ssh_packet_set_default_callbacks(ssh_session session)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="vUk5pLuXRZSB5UFMCCAO-45" vertex="1" connectable="0">
+        <mxCell id="vUk5pLuXRZSB5UFMCCAO-46" value="&lt;div&gt;void ssh_packet_set_default_callbacks(ssh_session session)&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="vUk5pLuXRZSB5UFMCCAO-45" vertex="1" connectable="0">
           <mxGeometry x="-0.0222" y="1" relative="1" as="geometry">
             <mxPoint y="-25" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-51" value="ssh_session" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-590" y="550" width="240" height="130" as="geometry" />
+          <mxGeometry x="-590" y="550" width="240" height="156" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-2" value="+ ssh_connection_callback" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vUk5pLuXRZSB5UFMCCAO-51">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-2" value="+ ssh_connection_callback" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="vUk5pLuXRZSB5UFMCCAO-51" vertex="1">
           <mxGeometry y="26" width="240" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-9" value="+ socket_callbacks: ssh_socket_callbacks" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vUk5pLuXRZSB5UFMCCAO-51">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-9" value="+ socket_callbacks: ssh_socket_callbacks" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="vUk5pLuXRZSB5UFMCCAO-51" vertex="1">
           <mxGeometry y="52" width="240" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-52" value="+ in_packet: PACKET" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="vUk5pLuXRZSB5UFMCCAO-51" vertex="1">
@@ -165,41 +170,44 @@
         <mxCell id="vUk5pLuXRZSB5UFMCCAO-53" value="+ in_buffer: ssh_buffer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="vUk5pLuXRZSB5UFMCCAO-51" vertex="1">
           <mxGeometry y="104" width="240" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-3" target="W-bWjzh_0HiaXHHiQuAw-2">
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-10" value="+ packet_callbacks: ssh_list*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="vUk5pLuXRZSB5UFMCCAO-51" vertex="1">
+          <mxGeometry y="130" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-3" target="W-bWjzh_0HiaXHHiQuAw-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#ffe6cc;strokeColor=#d79b00;endArrow=none;startFill=0;dashed=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-3" target="vUk5pLuXRZSB5UFMCCAO-26">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#ffe6cc;strokeColor=#d79b00;endArrow=none;startFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="9Ngg99QZDU5gHoVUm_Nt-6" target="vUk5pLuXRZSB5UFMCCAO-26" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="750" y="765" />
+              <mxPoint x="750" y="739" />
               <mxPoint x="750" y="1577" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-55" value="void ssh_packet_register_socket_callback(ssh_session session, ssh_socket s)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="W-bWjzh_0HiaXHHiQuAw-53">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-55" value="&lt;div&gt;void ssh_packet_register_socket_callback(ssh_session session, ssh_socket s)&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="W-bWjzh_0HiaXHHiQuAw-53" vertex="1" connectable="0">
           <mxGeometry x="-0.5106" y="-1" relative="1" as="geometry">
             <mxPoint y="-16" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-3" value="static void ssh_client_connection_callback(ssh_session session)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-3" value="static void ssh_client_connection_callback(ssh_session session)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-500" y="750" width="350" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-5" target="vUk5pLuXRZSB5UFMCCAO-51">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-5" target="vUk5pLuXRZSB5UFMCCAO-51" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-5" target="W-bWjzh_0HiaXHHiQuAw-7">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-5" target="W-bWjzh_0HiaXHHiQuAw-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-5" value="ssh_new()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-5" value="ssh_new()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-870" y="644.5" width="100" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-7" value="int ssh_connect(ssh_session session)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-7" value="int ssh_connect(ssh_session session)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-930" y="906.75" width="220" height="39" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-11" value="设置回调用函数" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-11" value="设置回调用函数" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-680" y="810.5" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startFill=0;dashed=1;fillColor=#d5e8d4;strokeColor=#82b366;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-15" target="vUk5pLuXRZSB5UFMCCAO-26">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startFill=0;dashed=1;fillColor=#d5e8d4;strokeColor=#82b366;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-15" target="vUk5pLuXRZSB5UFMCCAO-26" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="730" y="852" />
@@ -207,25 +215,25 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-15" value="callback_receive_banner" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-15" value="callback_receive_banner" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-300" y="836.75" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-17" value="socket_callback_connected" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-17" value="socket_callback_connected" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-300" y="880.75" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-22" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-22" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
           <mxGeometry x="-710" y="830.5" width="20" height="199.5" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-24" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;size=0.5;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-24" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;size=0.5;" parent="1" vertex="1">
           <mxGeometry x="-530" y="763.5" width="20" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-25" value="设置　socket　回调用函数" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-25" value="设置　socket　回调用函数" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-500" y="857.5" width="150" height="35" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-26" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-26" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
           <mxGeometry x="-340" y="838.25" width="20" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="vUk5pLuXRZSB5UFMCCAO-28" target="W-bWjzh_0HiaXHHiQuAw-17">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="vUk5pLuXRZSB5UFMCCAO-28" target="W-bWjzh_0HiaXHHiQuAw-17" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="680" y="1629" />
@@ -233,31 +241,31 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-29" target="W-bWjzh_0HiaXHHiQuAw-30">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-29" target="W-bWjzh_0HiaXHHiQuAw-30" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-29" value="int ssh_socket_connect(ssh_socket s, const char *host, uint16_t port, const char *bind_addr)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-29" value="int ssh_socket_connect(ssh_socket s, const char *host, uint16_t port, const char *bind_addr)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-680" y="935" width="500" height="43" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-30" target="W-bWjzh_0HiaXHHiQuAw-32">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-30" target="W-bWjzh_0HiaXHHiQuAw-32" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-30" value="socket_t ssh_connect_host_nonblocking(ssh_session session, const char *host, const char *bind_addr, int port)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-30" value="socket_t ssh_connect_host_nonblocking(ssh_session session, const char *host, const char *bind_addr, int port)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="30" y="937" width="610" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-32" target="W-bWjzh_0HiaXHHiQuAw-34">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-32" target="W-bWjzh_0HiaXHHiQuAw-34" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-32" value="void ssh_socket_set_fd(ssh_socket s, socket_t fd)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-32" value="void ssh_socket_set_fd(ssh_socket s, socket_t fd)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="192.5" y="1027" width="285" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-34" target="W-bWjzh_0HiaXHHiQuAw-42">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-34" target="W-bWjzh_0HiaXHHiQuAw-42" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-34" value="ssh_poll_handle ssh_socket_get_poll_handle(ssh_socket s)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-34" value="ssh_poll_handle ssh_socket_get_poll_handle(ssh_socket s)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="170" y="1117" width="330" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-42" target="vUk5pLuXRZSB5UFMCCAO-5">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-42" target="vUk5pLuXRZSB5UFMCCAO-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="660" y="1227" />
@@ -266,21 +274,21 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-45" value="&lt;span style=&quot;&quot;&gt;设置回调用函数为　ssh_socket_pollcallback&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#B85450;" vertex="1" connectable="0" parent="W-bWjzh_0HiaXHHiQuAw-39">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-45" value="&lt;span style=&quot;&quot;&gt;设置回调用函数为　ssh_socket_pollcallback&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#B85450;" parent="W-bWjzh_0HiaXHHiQuAw-39" vertex="1" connectable="0">
           <mxGeometry x="0.2053" y="-1" relative="1" as="geometry">
             <mxPoint x="89" y="-17" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-42" value="ssh_poll_handle ssh_poll_new(socket_t fd, short events, ssh_poll_callback cb, void *userdata)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-42" value="ssh_poll_handle ssh_poll_new(socket_t fd, short events, ssh_poll_callback cb, void *userdata)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="80" y="1207" width="510" height="39" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-46" target="W-bWjzh_0HiaXHHiQuAw-48">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-46" target="W-bWjzh_0HiaXHHiQuAw-48" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-46" value="int ssh_handle_packets_termination(ssh_session session, int timeout, ssh_termination_function fct,　void *user);" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-46" value="int ssh_handle_packets_termination(ssh_session session, int timeout, ssh_termination_function fct,　void *user);" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-680" y="1009" width="610" height="41" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-48" target="vUk5pLuXRZSB5UFMCCAO-31">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-48" target="vUk5pLuXRZSB5UFMCCAO-31" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-375" y="1280" />
@@ -289,37 +297,140 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-57" value="int ssh_poll_ctx_dopoll(ssh_poll_ctx ctx, int timeout)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="W-bWjzh_0HiaXHHiQuAw-52">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-57" value="int ssh_poll_ctx_dopoll(ssh_poll_ctx ctx, int timeout)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="W-bWjzh_0HiaXHHiQuAw-52" vertex="1" connectable="0">
           <mxGeometry x="0.0086" y="1" relative="1" as="geometry">
             <mxPoint y="-9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-48" value="int ssh_handle_packets(ssh_session session, int timeout)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-48" value="int ssh_handle_packets(ssh_session session, int timeout)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-535" y="1097" width="320" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="W-bWjzh_0HiaXHHiQuAw-58" target="W-bWjzh_0HiaXHHiQuAw-59">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-58" target="W-bWjzh_0HiaXHHiQuAw-59" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-58" value="int channel_rcv_request(ssh_session session, uint8_t type, ssh_buffer packet, void *user)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1560" y="2190" width="490" height="30" as="geometry" />
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-58" value="int channel_rcv_request(ssh_session session, uint8_t type, ssh_buffer packet, void *user)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="1731" y="2190" width="490" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-59" value="int ssh_message_handle_channel_request(ssh_session session, ssh_channel channel,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ssh_buffer packet, const char *request, uint8_t want_reply)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1405" y="2270" width="800" height="40" as="geometry" />
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-59" target="9Ngg99QZDU5gHoVUm_Nt-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-61" value="通道请求回调用" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="2040" y="2080" width="150" height="40" as="geometry" />
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-59" value="int ssh_message_handle_channel_request(ssh_session session, ssh_channel channel,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ssh_buffer packet, const char *request, uint8_t want_reply)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1576" y="2270" width="800" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-62" value="" style="edgeStyle=none;endArrow=none;exitX=0.5;exitY=1;dashed=1;html=1;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" source="W-bWjzh_0HiaXHHiQuAw-61" parent="1" target="W-bWjzh_0HiaXHHiQuAw-58">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-61" value="通道请求回调用" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="2038.5" y="2106" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-62" value="" style="edgeStyle=none;endArrow=none;exitX=0.5;exitY=1;dashed=1;html=1;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-61" target="W-bWjzh_0HiaXHHiQuAw-58" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
             <mxPoint x="2060" y="2040" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-64" value="仅服务器端调用" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="2160" y="2185" width="150" height="40" as="geometry" />
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-64" value="仅服务器端调用" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="2260" y="2185" width="150" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="W-bWjzh_0HiaXHHiQuAw-65" value="" style="edgeStyle=none;endArrow=none;exitX=0.5;exitY=1;dashed=1;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" source="W-bWjzh_0HiaXHHiQuAw-64" parent="1" target="W-bWjzh_0HiaXHHiQuAw-59">
+        <mxCell id="W-bWjzh_0HiaXHHiQuAw-65" value="" style="edgeStyle=none;endArrow=none;exitX=0.5;exitY=1;dashed=1;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="W-bWjzh_0HiaXHHiQuAw-64" target="W-bWjzh_0HiaXHHiQuAw-59" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
             <mxPoint x="2170" y="2180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-1" value="static void ssh_message_queue(ssh_session session, ssh_message message)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1763.5" y="2350" width="425" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-4" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="705" width="20" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-5" value="ssh_send_banner" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-120" y="690" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-6" value="注册 socket 回调函数" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-120" y="722" width="130" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;" parent="1" source="9Ngg99QZDU5gHoVUm_Nt-7" target="9Ngg99QZDU5gHoVUm_Nt-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="813" />
+              <mxPoint x="90" y="620" />
+              <mxPoint x="-300" y="620" />
+              <mxPoint x="-300" y="693" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-15" value="void ssh_packet_set_callbacks(ssh_session session, ssh_packet_callbacks callbacks)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="9Ngg99QZDU5gHoVUm_Nt-14" vertex="1" connectable="0">
+          <mxGeometry x="0.2914" y="-3" relative="1" as="geometry">
+            <mxPoint x="80" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9Ngg99QZDU5gHoVUm_Nt-7" target="9Ngg99QZDU5gHoVUm_Nt-16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="814" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-7" value="Key process" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-110" y="799" width="100" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-8" value="ssh_dh_client_callbacks" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1731" y="2050" width="150" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;" parent="1" source="9Ngg99QZDU5gHoVUm_Nt-11" target="9Ngg99QZDU5gHoVUm_Nt-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="775" />
+              <mxPoint x="60" y="650" />
+              <mxPoint x="-290" y="650" />
+              <mxPoint x="-290" y="693" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-13" value="void ssh_packet_set_default_callbacks(ssh_session session)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="9Ngg99QZDU5gHoVUm_Nt-12" vertex="1" connectable="0">
+          <mxGeometry x="0.1488" y="-1" relative="1" as="geometry">
+            <mxPoint x="7" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-11" value="注册包的默认回调函数" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-120" y="760" width="130" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="9Ngg99QZDU5gHoVUm_Nt-16" value="int dh_handshake(ssh_session session)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="160" y="799" width="230" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="vUk5pLuXRZSB5UFMCCAO-43" target="9Ngg99QZDU5gHoVUm_Nt-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="2131" />
+              <mxPoint x="1290" y="2070" />
+              <mxPoint x="1471" y="2070" />
+              <mxPoint x="1471" y="2069" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-2" value="void ssh_packet_set_callbacks(ssh_session session, ssh_packet_callbacks callbacks)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zCzrlXL6onj5idmMxhpc-1">
+          <mxGeometry x="0.5437" y="-1" relative="1" as="geometry">
+            <mxPoint x="-98" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-4" value="int channel_rcv_data((ssh_session session, uint8_t type, ssh_buffer packet, void *user))" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2046" y="2610" width="500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-6" value="&lt;div&gt;通道接收数据回调用函数：&lt;/div&gt;&lt;div&gt;１. 消息类型：SSH2_MSG_CHANNEL_DATA&lt;/div&gt;&lt;div&gt;２. 得到通道 ID,并验证&lt;/div&gt;&lt;div&gt;３. 把数据放入　channel-&amp;gt;stdout_buffer&lt;/div&gt;&lt;div&gt;&amp;nbsp;4. 如果设置了回调函数　int (*ssh_channel_data_callback) (ssh_session session, ssh_channel channel,&amp;nbsp; void *data, uint32_t len, int is_stderr, void *userdata)　则调用回调用函数。&lt;/div&gt;&lt;div&gt;注意：此回调函数队列共用相同的数据。前一个回调函数使用了一部分数据，后面的回调函数则使用剩下的数据。&lt;/div&gt;" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="2560" y="2430" width="390" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-9" value="" style="edgeStyle=none;endArrow=none;exitX=0.007;exitY=0.75;dashed=1;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="zCzrlXL6onj5idmMxhpc-6" target="zCzrlXL6onj5idmMxhpc-4">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="2101" y="2485" as="targetPoint" />
+            <mxPoint x="2260" y="2440" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-10" value="int ssh_channel_write(ssh_channel channel, const void *data, uint32_t len)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1500" y="2610" width="410" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-11" value="&lt;div&gt;１. 写入消息类型：SSH2_MSG_CHANNEL_DATA&lt;/div&gt;&lt;div&gt;２. 写入通道 ID&lt;/div&gt;&lt;div&gt;３. 把数据放入　session-&amp;gt;out_buffer&lt;/div&gt;" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="2470" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zCzrlXL6onj5idmMxhpc-12" value="" style="edgeStyle=none;endArrow=none;exitX=0.5;exitY=1;dashed=1;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="zCzrlXL6onj5idmMxhpc-11" target="zCzrlXL6onj5idmMxhpc-10">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="900" y="2370" as="targetPoint" />
+            <mxPoint x="1059" y="2330" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
       </root>
