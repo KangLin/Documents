@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0" version="27.0.6">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0" version="27.1.1">
   <diagram name="第 1 页" id="OM83CpGYH94eVuSs3SEg">
     <mxGraphModel dx="1665" dy="1652" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -38,22 +38,25 @@
           <mxGeometry y="78" width="200" height="26" as="geometry" />
         </mxCell>
         <mxCell id="LeyU6GgHvWCKIdrkXuHA-15" value="rdpTransportIo" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="145" y="379" width="250" height="156" as="geometry" />
+          <mxGeometry x="145" y="379" width="250" height="182" as="geometry" />
         </mxCell>
         <mxCell id="LeyU6GgHvWCKIdrkXuHA-16" value="+ TCPConnect: pTCPConnect" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
           <mxGeometry y="26" width="250" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-1" value="+ ReadPdu: pTransportRWFkt" style="text;strokeColor=#9673a6;fillColor=#e1d5e7;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="LeyU6GgHvWCKIdrkXuHA-15">
+        <mxCell id="fpvca_csrv07hGZgN-_H-1" value="+ ReadPdu: pTransportRWFkt" style="text;strokeColor=#9673a6;fillColor=#e1d5e7;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
           <mxGeometry y="52" width="250" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="lGm6jdlDjNyTGUS1e6rk-53" value="+ ReadBytes: pTransportRead" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
+        <mxCell id="NruL55KOUGhkWLxvXqQs-1" value="+ WritePdu: pTransportRWFkt" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
           <mxGeometry y="78" width="250" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="LeyU6GgHvWCKIdrkXuHA-17" value="+ ConnectLayer: pTransportConnectLayer" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
+        <mxCell id="lGm6jdlDjNyTGUS1e6rk-53" value="+ ReadBytes: pTransportRead" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
           <mxGeometry y="104" width="250" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="XTpHhyoXOj-TOA5czuos-32" value="+ AttachLayer: pTransportAttachLayer" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
+        <mxCell id="LeyU6GgHvWCKIdrkXuHA-17" value="+ ConnectLayer: pTransportConnectLayer" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
           <mxGeometry y="130" width="250" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="XTpHhyoXOj-TOA5czuos-32" value="+ AttachLayer: pTransportAttachLayer" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="LeyU6GgHvWCKIdrkXuHA-15" vertex="1">
+          <mxGeometry y="156" width="250" height="26" as="geometry" />
         </mxCell>
         <mxCell id="LeyU6GgHvWCKIdrkXuHA-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;dashed=1;dashPattern=8 8;" parent="1" source="LeyU6GgHvWCKIdrkXuHA-7" target="LeyU6GgHvWCKIdrkXuHA-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -121,12 +124,24 @@
             <mxPoint y="-15" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LeyU6GgHvWCKIdrkXuHA-27" target="fpvca_csrv07hGZgN-_H-1">
+        <mxCell id="fpvca_csrv07hGZgN-_H-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="LeyU6GgHvWCKIdrkXuHA-27" target="fpvca_csrv07hGZgN-_H-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-3" value="transport_default_read_pdu" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="fpvca_csrv07hGZgN-_H-2">
+        <mxCell id="fpvca_csrv07hGZgN-_H-3" value="&lt;span style=&quot;color: rgb(150, 115, 166);&quot;&gt;transport_default_read_pdu&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="fpvca_csrv07hGZgN-_H-2" vertex="1" connectable="0">
           <mxGeometry x="0.4847" relative="1" as="geometry">
             <mxPoint x="3" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NruL55KOUGhkWLxvXqQs-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LeyU6GgHvWCKIdrkXuHA-27" target="LeyU6GgHvWCKIdrkXuHA-15" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="665" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NruL55KOUGhkWLxvXqQs-3" value="transport_default_write" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="NruL55KOUGhkWLxvXqQs-2" vertex="1" connectable="0">
+          <mxGeometry x="0.5055" y="-1" relative="1" as="geometry">
+            <mxPoint x="2" y="-9" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="LeyU6GgHvWCKIdrkXuHA-27" value="rdpTransport* transport_new(rdpContext* context)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -284,7 +299,7 @@
             <mxPoint x="1028" y="1715" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ZBAFbmLsU9ocwlZZKPTl-6" value="transport_read_pdu" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="ZBAFbmLsU9ocwlZZKPTl-6" value="transport_read_pdu" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
           <mxGeometry x="474" y="1680" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ZBAFbmLsU9ocwlZZKPTl-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ZBAFbmLsU9ocwlZZKPTl-8" target="lGm6jdlDjNyTGUS1e6rk-44" edge="1">
@@ -294,7 +309,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ZBAFbmLsU9ocwlZZKPTl-8" value="transport_default_read_pdu" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="ZBAFbmLsU9ocwlZZKPTl-8" value="&lt;span style=&quot;color: rgb(150, 115, 166);&quot;&gt;transport_default_read_pdu&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="946.5" y="1772" width="162" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ZBAFbmLsU9ocwlZZKPTl-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="ZBAFbmLsU9ocwlZZKPTl-10" edge="1">
@@ -320,11 +335,11 @@
         <mxCell id="ZBAFbmLsU9ocwlZZKPTl-12" value="freerdp_tcp_layer_read" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="1120" y="2149" width="142" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="lGm6jdlDjNyTGUS1e6rk-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="lGm6jdlDjNyTGUS1e6rk-1" target="lGm6jdlDjNyTGUS1e6rk-72" edge="1">
+        <mxCell id="lGm6jdlDjNyTGUS1e6rk-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.543;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="lGm6jdlDjNyTGUS1e6rk-1" target="lGm6jdlDjNyTGUS1e6rk-72" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-1" value="transport_get_event_handles" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="140" y="887" width="200" height="30" as="geometry" />
+          <mxGeometry x="314" y="1067" width="200" height="30" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-6" value="transport_set_recv_callbacks" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="631" y="980" width="180" height="30" as="geometry" />
@@ -368,7 +383,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-40" value="&lt;div&gt;Read pdu package.&lt;/div&gt;&lt;div&gt;@return &amp;lt; 0 on error; 0 if not enough data is available (non blocking mode); &amp;gt; 0 number of&lt;/div&gt;" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1226" y="1732" width="314" height="40" as="geometry" />
+          <mxGeometry x="1235.5" y="1710" width="314" height="40" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-41" value="" style="edgeStyle=none;endArrow=none;exitX=0;exitY=0.5;dashed=1;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="lGm6jdlDjNyTGUS1e6rk-40" target="ZBAFbmLsU9ocwlZZKPTl-8" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
@@ -382,7 +397,7 @@
           <mxGeometry x="1108.5" y="1840" width="127" height="40" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-46" value="/* PDU parser.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * incomplete: FALSE if the whole PDU is available, TRUE otherwise&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Return: 0&amp;nbsp; -&amp;gt; PDU header incomplete&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;gt;0 -&amp;gt; PDU header complete, length of PDU.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;0 -&amp;gt; Abort, an error occurred&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; */" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1346.5" y="1805" width="356" height="110" as="geometry" />
+          <mxGeometry x="1370" y="1805" width="356" height="110" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-47" value="" style="edgeStyle=none;endArrow=none;exitX=0;exitY=0.5;dashed=1;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="lGm6jdlDjNyTGUS1e6rk-46" target="lGm6jdlDjNyTGUS1e6rk-45" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
@@ -431,7 +446,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-72" value="BIO_get_event" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="315" y="1079.5" width="120" height="30" as="geometry" />
+          <mxGeometry x="353.5" y="1116" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-79" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="lGm6jdlDjNyTGUS1e6rk-73" target="lGm6jdlDjNyTGUS1e6rk-78" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -442,13 +457,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-73" value="transport_layer_bio_ctrl" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="302.5" y="1144" width="145" height="25" as="geometry" />
+          <mxGeometry x="341" y="1180.5" width="145" height="25" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamondThin;startFill=0;dashed=1;dashPattern=8 8;endFill=0;startArrow=none;" parent="1" source="XTpHhyoXOj-TOA5czuos-31" target="lGm6jdlDjNyTGUS1e6rk-78" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-78" value="freerdp_tcp_layer_get_event" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="288" y="1194.5" width="175" height="25.5" as="geometry" />
+          <mxGeometry x="326.5" y="1231" width="175" height="25.5" as="geometry" />
         </mxCell>
         <mxCell id="lGm6jdlDjNyTGUS1e6rk-81" value="WSAEventSelect" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="2050.5" y="1468" width="120" height="30" as="geometry" />
@@ -519,29 +534,48 @@
         <mxCell id="G-wOjxW0N81jkDmk9w7Z-15" value="WaitForMultipleObjects" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="166.5" y="926" width="147" height="23" as="geometry" />
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-5" value="/**&lt;br&gt;&amp;nbsp;* @brief Tries to read toRead bytes from the specified transport&lt;br&gt;&amp;nbsp;*&lt;br&gt;&amp;nbsp;* Try to read toRead bytes from the transport to the stream.&lt;br&gt;&amp;nbsp;* In case it was not possible to read toRead bytes 0 is returned. The stream is always advanced by&lt;br&gt;&amp;nbsp;* the number of bytes read.&lt;br&gt;&amp;nbsp;*&lt;br&gt;&amp;nbsp;* The function assumes that the stream has enough capacity to hold the data.&lt;br&gt;&amp;nbsp;*&lt;br&gt;&amp;nbsp;* @param[in] transport rdpTransport&lt;br&gt;&amp;nbsp;* @param[in] s wStream&lt;br&gt;&amp;nbsp;* @param[in] toRead number of bytes to read&lt;br&gt;&amp;nbsp;* @return &amp;lt; 0 on error; 0 if not enough data is available (non blocking mode); 1 toRead bytes read&lt;br&gt;&amp;nbsp;*/" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="fpvca_csrv07hGZgN-_H-5" value="/**&lt;br&gt;&amp;nbsp;* @brief Tries to read toRead bytes from the specified transport&lt;br&gt;&amp;nbsp;*&lt;br&gt;&amp;nbsp;* Try to read toRead bytes from the transport to the stream.&lt;br&gt;&amp;nbsp;* In case it was not possible to read toRead bytes 0 is returned. The stream is always advanced by&lt;br&gt;&amp;nbsp;* the number of bytes read.&lt;br&gt;&amp;nbsp;*&lt;br&gt;&amp;nbsp;* The function assumes that the stream has enough capacity to hold the data.&lt;br&gt;&amp;nbsp;*&lt;br&gt;&amp;nbsp;* @param[in] transport rdpTransport&lt;br&gt;&amp;nbsp;* @param[in] s wStream&lt;br&gt;&amp;nbsp;* @param[in] toRead number of bytes to read&lt;br&gt;&amp;nbsp;* @return &amp;lt; 0 on error; 0 if not enough data is available (non blocking mode); 1 toRead bytes read&lt;br&gt;&amp;nbsp;*/" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="1370" y="1940" width="550" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-6" value="" style="edgeStyle=none;endArrow=none;dashed=1;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="fpvca_csrv07hGZgN-_H-5" parent="1" target="ZBAFbmLsU9ocwlZZKPTl-9">
+        <mxCell id="fpvca_csrv07hGZgN-_H-6" value="" style="edgeStyle=none;endArrow=none;dashed=1;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="fpvca_csrv07hGZgN-_H-5" target="ZBAFbmLsU9ocwlZZKPTl-9" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
             <mxPoint x="1320" y="1930" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-8" value="&lt;div&gt;Read pdu package.&lt;/div&gt;&lt;div&gt;@return &amp;lt; 0 on error; 0 if not enough data is available (non blocking mode); &amp;gt; 0 number of&lt;/div&gt;" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="fpvca_csrv07hGZgN-_H-8" value="&lt;div&gt;Read pdu package.&lt;/div&gt;&lt;div&gt;@return &amp;lt; 0 on error; 0 if not enough data is available (non blocking mode); &amp;gt; 0 number of&lt;/div&gt;" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="670" y="1620" width="314" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-9" value="" style="edgeStyle=none;endArrow=none;exitX=0;exitY=0.5;dashed=1;html=1;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="fpvca_csrv07hGZgN-_H-8" target="ZBAFbmLsU9ocwlZZKPTl-6">
+        <mxCell id="fpvca_csrv07hGZgN-_H-9" value="" style="edgeStyle=none;endArrow=none;exitX=0;exitY=0.5;dashed=1;html=1;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="fpvca_csrv07hGZgN-_H-8" target="ZBAFbmLsU9ocwlZZKPTl-6" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
             <mxPoint x="594" y="1680" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-10" value="&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * return:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -1: error&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 0: success&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1: redirection&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; */" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="fpvca_csrv07hGZgN-_H-10" value="&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * return:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -1: error&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 0: success&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; *&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1: redirection&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; */" style="shape=note;size=15;align=left;spacingLeft=10;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="414" y="1508" width="136" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="fpvca_csrv07hGZgN-_H-11" value="" style="edgeStyle=none;endArrow=none;exitX=0;exitY=0.5;dashed=1;html=1;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="fpvca_csrv07hGZgN-_H-10" target="ZBAFbmLsU9ocwlZZKPTl-5">
+        <mxCell id="fpvca_csrv07hGZgN-_H-11" value="" style="edgeStyle=none;endArrow=none;exitX=0;exitY=0.5;dashed=1;html=1;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="fpvca_csrv07hGZgN-_H-10" target="ZBAFbmLsU9ocwlZZKPTl-5" edge="1">
           <mxGeometry x="1" relative="1" as="geometry">
             <mxPoint x="400" y="1650" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="NruL55KOUGhkWLxvXqQs-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NruL55KOUGhkWLxvXqQs-4" target="NruL55KOUGhkWLxvXqQs-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NruL55KOUGhkWLxvXqQs-4" value="int transport_write(rdpTransport* transport, wStream* s)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673A6;" parent="1" vertex="1">
+          <mxGeometry x="1936" y="1680" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NruL55KOUGhkWLxvXqQs-5" value="&lt;span style=&quot;color: rgb(150, 115, 166);&quot;&gt;static int transport_default_write(rdpTransport* transport, wStream* s)&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1899" y="1742" width="374" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="10Vn4lv1qJgs47Y-zHvw-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="10Vn4lv1qJgs47Y-zHvw-1" target="lGm6jdlDjNyTGUS1e6rk-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="414" y="897" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10Vn4lv1qJgs47Y-zHvw-1" value="freerdp_get_event_handles" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="158.75" y="880" width="160" height="33" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
