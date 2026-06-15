@@ -45,3 +45,65 @@ k@DESKTOP-T3RLUJL MSYS /d/Source/RabbitRemoteControl
 $ git log --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
 added lines: 379338, removed lines: 220793, total lines: 158545
 ```
+
+### 恢复 `git reset --hard ` 的代码
+#### 已经提交了的代码
+
+```bash
+git reflog
+```
+执行后会输出如下信息：
+
+```
+e1b2c3d HEAD@{0}: reset: moving to e1b2c3d
+a1b2c3d HEAD@{1}: commit: some commit message
+```
+
+其中 `a1b2c3d` 是你之前提交的 commit id，执行如下命令即可恢复：
+
+```bash
+git reset --hard a1b2c3d
+```
+#### 已经 `git add`，但没有提交的代码
+
+```bash
+git fsck --lost-found
+```
+执行后会输出如下信息：
+
+```
+dangling blob 1234567
+```
+其中 `1234567` 是你丢失的代码的 blob id，执行如下命令即可恢复：
+
+```bash
+git show 1234567 > recovered_code.txt
+```
+执行后会在当前目录下生成一个 `recovered_code.txt` 文件，里面就是你丢失的代码。
+
+- 给出一个恢复脚本：
+
+```bash
+#!/bin/bash
+# 1. 列出所有悬空 blob 的哈希值
+git fsck --lost-found | awk '{print $3}' > blob_hashes.txt
+
+# 2. 逐个查看内容（交互式）
+while read hash; do
+    echo "=== 查看对象: $hash ==="
+    git show $hash | head -20  # 显示前20行
+    #echo "是否恢复这个文件？(y/n)"
+    read  -t 60 -p "是否恢复这个文件？(y/N)" INPUT < /dev/tty
+    if [ "${INPUT:-N}" != "Y" ] && [ "${INPUT:-N}" != "y" ]; then
+		continue
+	fi
+
+    git show $hash > "recovered_$(date +%s)_${hash:0:8}.txt"
+    echo "已保存为 recovered_${hash:0:8}.txt"    
+done < blob_hashes.txt
+```
+
+执行后会逐个显示悬空 blob 的内容，并询问是否恢复，如果输入 `y` 或 `Y` 则会将该 blob 的内容保存到一个新的文件中，文件名格式为 `recovered_<timestamp>_<hash>.txt`。如果没有输入，则默认不恢复。
+- 注意：如果你有很多悬空 blob，建议先将它们的哈希值保存到一个文件中，然后再逐个查看和恢复，以免一次性显示过多内容导致混乱。
+
+
