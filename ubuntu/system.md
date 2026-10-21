@@ -197,22 +197,66 @@ SSH 密钥登录分为以下的步骤。
 
     l@l:~$ ecryptfs-setup-private
 
+它将要求输入登录密码和安装密码。登录密码与您的正常登录密码相同。安装密码用于生成文件加解密的主密钥。
+（安装密码由登录密码加密后保存在 ~/.ecryptfs/wrapped-passphrase 中。) 将其留空以自动随机生成一个密码，因为这样更安全。注销并重新登录。
 
-它将要求输入登录密码和安装密码。登录密码与您的正常登录密码相同。安装密码用于派生文件加密主密钥。（安装密码由登录密码加密后保存在 ~/.ecryptfs/wrapped-passphrase 中。) 将其留空以自动随机生成一个密码，因为这样更安全。注销并重新登录。
-
-您会注意到，eCryptFS 默认情况下创建了两个目录：您的主目录中的 Private 和 .Private。 ~/.Private目录包含加密数据，您可以在 ~/Private目录中访问相应的解密数据。当您登录时， ~/.Private目录会自动解密并映射到 ~/Private目录，以便您可以访问它。当您注销时， ~/Private 目录会自动卸载，并且 ~/Private 目录中的内容会加密回 ~/.Private 目录中。
+您会注意到，eCryptFS 默认情况下创建了两个目录：您的主目录中的 Private 和 .Private。
+~/.Private目录包含加密数据，您可以在 ~/Private目录中访问相应的解密数据。
+当您登录时， ~/.Private目录会自动解密并映射到 ~/Private目录，以便您可以访问它。
+当您注销时， ~/Private 目录会自动卸载，并且 ~/Private 目录中的内容会加密回 ~/.Private 目录中。
 
 eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 目录中，而无需您输入密码，这是通过 eCryptFS PAM 模块 来完成的。
 
-如果您不希望在登录时自动挂载 ~/Private 目录，只需在运行 ecryptfs-setup-private 工具时添加 --noautomount 选项即可。同样，如果您不希望注销后自动卸载 ~/Private 目录，请指定 --noautoumount 选项。但是，您将必须自己手动挂载或卸载 ~/Private 目录：
+如果您不希望在登录时自动挂载 ~/Private 目录，只需在运行 ecryptfs-setup-private 工具时添加 --noautomount 选项即可。
+同样，如果您不希望注销后自动卸载 ~/Private 目录，请指定 --noautoumount 选项。但是，您将必须自己手动挂载或卸载 ~/Private 目录：
 
      $ ecryptfs-mount-private ~/.Private ~/Private
      $ ecryptfs-umount-private ~/Private
+
+### 配置位置
+
+配置放在 ~/.ecryptfs 目录下，你可以看到相关的文件：
+
+    mint@mint-H310M-BATTLE-GENERAL-D4-G10b:~/.ecryptfs$ ls
+    auto-mount  auto-umount  Private.mnt  Private.sig  wrapped-passphrase
+
+- wrapped-passphrase：保存用于文件加解密的主密钥（此密钥被登录密码进行加密）
+- Private.mnt：保存 Private 的位置。默认为: ~/Private
 
 ### 查看是否加载
 
     l@l:~$ mount |grep ecryptfs
     /home/l/.Private on /home/l/Private type ecryptfs (rw,nosuid,nodev,relatime,ecryptfs_fnek_sig=ba1fd50362065a83,ecryptfs_sig=42f56088c83f3865,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_unlink_sigs)
+
+### 多个操作系统多用户使用相同的 eCryptFS
+例如： 在一台主机上有两个操作系统 Ubuntu(用户ubuntu)、 Linuxmint(用户mint)
+- 安装 Ubuntu,并安装设置好 eCryptFS。
+  - 设置目录权限
+
+        ubuntu@ubuntu:~$ chmod a+rw ~/.ecryptfs
+        ubuntu@ubuntu:~$ chmod a+rw ~/.Private
+        ubuntu@ubuntu:~$ chmod a+rw ~/Private
+
+- 安装 Linuxmint,并安装 eCryptFS。
+  - 在主目录下链接 ~/.ecryptfs
+
+        mint@mint-H310M-BATTLE-GENERAL-D4-G10b:~$ ln -s /home/ubuntu/.ecryptfs ~/.ecryptfs
+        mint@mint-H310M-BATTLE-GENERAL-D4-G10b:~$ ln -s /home/ubuntu/.Private ~/.Private
+        mint@mint-H310M-BATTLE-GENERAL-D4-G10b:~$ ln -s /home/ubuntu/Private ~/Private
+
+  - 修改当前用户密码与 ubuntu 用户的密码相同
+这样，就可以两操作系统使用相同的 eCryptFS 了。
+
+### 同一系统上，多用户使用相同的 eCryptFS
+国为 eCryptFs 加载 ~/.Private 后，就解密到 ~/Private 中。
+如果此户未注销，同时其它用户登录，因为其它用户有 ~/Private 的读写权限。
+那么其它用户就能使用它。
+
+       ubuntu@ubuntu:~$ chmod 777 ~/Private
+
+如果你不想其它用户使用它，那么你需要设置 ~/Private 的权限，只有当前用户有权限：
+
+        ubuntu@ubuntu:~$ chmod 700 ~/Private
 
 ### 参考:
 - [如何在 Linux 上使用 eCryptFS 加密文件和目录](https://cn.linux-console.net/?p=9052)
