@@ -298,7 +298,8 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
 
   - 只有图形登录需要添加二次验证。根据使用的桌面，选择相应的 gdm (图形桌面管理器)
 
-        sudo vim /etc/pam.d/gdm-password  # GNOME 桌面使用 gdm
+        sudo vim /etc/pam.d/gdm-password  # GNOME 桌面使用的 gdm
+        sudo vim /etc/pam.d/lightdm       # Cinnamon 桌面使用的 gdm
 
   - 只有 TTY 登录需要添加二次验证
 
