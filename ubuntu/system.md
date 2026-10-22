@@ -52,7 +52,8 @@
 
 ### 安装
 
-    sudo apt install openssh-server
+    sudo apt install openssh-server # ubuntu, debian
+    sudo dnf install openssh-server # Fedora, centos
 
 ### 对于具有systemd的系统：
 
@@ -181,7 +182,10 @@ SSH 密钥登录分为以下的步骤。
 
 ### 安装 ecryptfs
 
+    # Ubuntu
     l@l:~$ sudo apt install ecryptfs-utils
+    # Fedora
+    $ sudo dnf install ecryptfs-utils
 
 ### 现在让我们开始通过运行 eCryptFS 配置工具来加密某个目录：
 
@@ -274,8 +278,12 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
 ### 安装 TOTP PAM 模块
 在终端执行：
 
+    # Ubuntu
     sudo apt update
-    sudo apt install libpam-google-authenticator -y
+    sudo apt install libpam-google-authenticator
+    # Fedora
+    sudo dnf update
+    sudo dnf install google-authenticator
 
 ### 为用户生成密钥
 切换到需要开启验证的用户（不要直接用 root 操作），运行初始化命令：
@@ -294,7 +302,7 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
 - 修改 PAM 配置。根据你的需求修改：
   - 所有的验证都添加二次验证
 
-        sudo vim /etc/pam.d/common-auth
+        sudo vim /etc/pam.d/common-auth # 注意：有些系统没有此文件
 
   - 只有图形登录需要添加二次验证。根据使用的桌面，选择相应的 gdm (图形桌面管理器)
 
