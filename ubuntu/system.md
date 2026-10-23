@@ -414,3 +414,162 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
       # exit
 
 -  完成后重启并拔掉 U 盘即可。
+
+## 安装 GRUB 和 EFI
+
+GRUB EFI 涉及的文件分散在两个关键位置，理解它们的职责是掌握原理的关键：
+
+EFI 系统分区（ESP，通常挂载在 /boot/efi）：这是 UEFI 固件能识别的 FAT32 分区。
+GRUB 的 EFI 可执行文件就放在这里，具体路径通常是 /boot/efi/EFI/<发行版名>/grubx64.efi（例如 ubuntu 或 redhat）。
+固件启动时，会读取 NVRAM 中的启动项，找到这个文件并运行它。
+
+系统的 /boot/grub/ 目录：这里存放的是 GRUB 的“大脑”。grubx64.efi 被加载后，
+会去这个目录读取 grub.cfg（主配置文件）以及加载各种功能模块（在 x86_64-efi/ 子目录下）。
+
+### 启动流程：从固件到内核
+
+在 UEFI 模式下，GRUB 的启动是一个分工明确的多阶段过程：
+- 固件阶段：电脑通电后，UEFI 固件初始化硬件，然后根据 NVRAM 中保存的启动顺序（Boot Order），
+找到 ESP 分区里的 grubx64.efi 文件，将其加载到内存并执行。
+- GRUB 阶段：grubx64.efi 运行后，它利用 UEFI 提供的“启动服务”来读取文件。
+它会找到 /boot/grub/grub.cfg，解析其中的菜单项。关键点：GRUB 自身内置了文件系统驱动（如 ext4、btrfs、xfs），
+因此它可以直接读取根分区上的内核文件（vmlinuz）和初始内存盘（initramfs），即使这些文件不在 ESP 分区里也可以。
+- 交接控制权：当你在 GRUB 菜单中选定一个系统后，GRUB 会将内核和 initramfs 加载到内存，
+设置好启动参数，然后调用 ExitBootServices 退出 UEFI 的启动服务，
+最后跳转到内核代码开始执行，控制权就此移交给操作系统。
+
+### 操作
+- 准备 Linux Live USB
+
+  Linux Live USB（比如 Ubuntu 安装盘）。用它启动电脑，选择“Try Ubuntu”（试用而不安装）进入桌面环境。
+  - 确认 Live USB 以 UEFI 模式启动
+    在 Live 环境终端执行 ls /sys/firmware/efi，如果有输出，说明当前是 UEFI 模式，可以继续。
+    如果提示目录不存在，说明是以 Legacy BIOS 模式启动的，需要重启并在固件设置里调整启动模式。
+- 分区
+  - EFI 分区: /dev/sda1
+  - 系统根分区: /dev/sda2
+
+        # 先挂载系统根分区到 /mnt
+        sudo mount /dev/sda2 /mnt
+        # 挂载 EFI 分区到 /mnt/boot/efi
+        sudo mount /dev/sda1 /mnt/boot/efi
+        
+        # 挂载虚拟文件系统。为了让 chroot 环境能正常工作。
+        sudo mount --bind /dev /mnt/dev
+        sudo mount --bind /proc /mnt/proc
+        sudo mount --bind /sys /mnt/sys
+
+        # 进入原系统环境
+        sudo chroot /mnt
+        
+        # 重装 GRUB
+        # 根据你的启动模式选择命令
+        # 如果是传统 BIOS（Legacy）模式:
+        grub-install /dev/sda
+        update-grub
+        
+        # 如果是 UEFI 模式:
+        grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu
+        update-grub
+
+        # 退出虚拟文件系统
+        exit
+
+        sudo umount -R /mnt
+        sudo reboot
+
+- 可能遇到的报错与处理
+
+如果 grub-install 报告 EFI 分区是只读的，可以先退出 chroot，
+对 EFI 分区做一次文件系统检查并重新以读写方式挂载：
+
+    exit # 退出虚拟文件系统
+    sudo umount /mnt/boot/efi
+    sudo fsck /dev/sda1
+    sudo mount -o rw /dev/sda1 /mnt/boot/efi
+    sudo chroot /mnt
+    # 然后重新执行 grub-install 命令
+
+## 磁盘操作
+
+### 查看、操作磁盘命令： fdisk
+
+    # 查看系统的磁盘
+    sudo fdisk -l
+    # 操作磁盘，进行分区
+    sudo fdisk /dev/sda
+
+### 格式化分区
+- 格式化 FAT : mkfs.vfat
+
+      # 格式化 EFI 分区
+      sudo mkfs.vfat -F32 /dev/sda1
+
+- 格式化 exfat: mkfs.exfat
+
+      sudo mkfs.exfat /dev/sda1
+
+- 格式化 vfat: mkfs.vfat
+
+      sudo mkfs.vfat /dev/sda1
+
+- 格式化 ntfs : mkfs.ntfs
+
+      sudo mkfs.ntfs /dev/sda1
+
+- 格式化 dos : mkfs.msdos
+
+      sudo mkfs.msdos /dev/sda1
+
+- 格式化 ext
+
+      sudo mkfs.ext4 /dev/sda2 # ext4 格式
+      sudo mkfs.ext3 /dev/sda2 # ext3 格式
+      sudo mkfs.ext2 /dev/sda2 # ext2 格式
+
+### 设置分区标签
+
+- e2label: 仅限 ext2/3/4 文件系统
+
+      # 用法：sudo e2label <设备名> <新标签名>
+      sudo e2label /dev/sda2 ubuntu
+
+  - 通用工具 tune2fs (适用于 ext2/3/4)
+
+    这其实是 e2label 的底层工具，功能更强大。
+
+        # 给 ext4 分区加标签
+        sudo tune2fs -L my_data /dev/sda4
+
+- exfatlabel (现代文件系统)
+
+  如果遇到 exFAT 分区（常见于大容量 U 盘/SD 卡），可以使用：
+
+      sudo exfatlabel /dev/sdb1 My_USB
+
+- fatlabel 或 mlabel: FAT32 文件系统，常用于 EFI 分区
+
+      # 用法：sudo fatlabel <设备名> <新标签名>
+      sudo fatlabel /dev/sda1 EFI
+      
+  注：如果系统没有 fatlabel，可以安装 dosfstools 软件包，或者使用 mlabel -i /dev/sda1 ::EFI
+
+- ntfslabel: NTFS 文件系统，常用于 Windows 分区
+
+      sudo ntfslabel /dev/sda3 Windows_Data
+
+### 查看标签和 UUID
+
+- blkid: 这个命令会列出所有块设备的详细信息，包括 LABEL（标签）、UUID 和 TYPE（文件系统类型）。
+
+      sudo blkid
+      
+      /dev/sda1: LABEL_FATBOOT="EFI" LABEL="EFI" UUID="186B-0E12" BLOCK_SIZE="512" TYPE="vfat" PARTLABEL="EFI System Partition" PARTUUID="206fc6b3-0198-4b52-b594-52e22a9b7aec"
+      /dev/sdb1: UUID="636041ea-1a87-45e2-bec5-610aa4b12871" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="60244b8a-01"
+      
+      # 只查看有标签的分区：
+      sudo blkid -s LABEL
+      # 只查看 UUID
+      sudo blkid -s UUID
+      # 只查看分区类型：
+      sudo blkid -s TYPE
