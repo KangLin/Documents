@@ -178,7 +178,25 @@ SSH 密钥登录分为以下的步骤。
 - [SSH 如何使用密钥登录服务器](https://cloud.tencent.com/developer/article/1780788)
 - [SSH 使用密钥远程登录](https://blog.csdn.net/wzfgd/article/details/114128524)
 
-## 加密文件夹
+## 加密文件系统
+
+eCryptfs 是在 Linux kernel 实现的一个加密文件系统，
+在 Linux kernel 2.6.19 版本收入官方 Linux kernel。
+它采用堆叠式的设计思想，逻辑上位于 VFS 和传统文件系统之间。
+用户应用程序对传统文件系统的读写操作，经过系统调用通过 VFS 首先被 eCryptfs 截获，
+eCryptfs 对文件数据进行加解密的操作，再转发给传统文件系统，为应用提供透明、动态、高效的加密功能。
+
+eCryptfs 对每个文件采用不同的文件加密密钥(File Encryption Key, FEK)，
+文件加密 算法 推荐使用 AES-128。FEK 不能以明文的形式存放，
+eCryptfs 使用用户提供的口令（Passphrase）、非对称密钥算法（如 RSA 算法）
+或 TPM（Trusted Platform Module）的公钥来加密保护 FEK。
+
+例如，当使用用户口令的时候，口令先经 hash 函数处理，再做为密钥加密 FEK。
+口令/公钥称为文件加密密钥加密密钥（File Encryption Key Encryption Key，FEFEK），
+加密后的 FEK 则称为加密文件密钥（Encrypted File Encryption Key，EFEK )。
+如果一个文件被多个授权用户访问，则有多份 EFEK。 此外，eCryptfs 还支持文件名的加密。
+现在系统都使用 pam_ecryptfs.so 在登录时，解密 FEK ，并放入系统的密钥环(KeyChain)中。
+eCryptFS 模块在加解密时，会从密钥环中根据文件的签名找到相应的文件加密密钥(FEK）。
 
 ### 安装 ecryptfs
 
@@ -191,30 +209,54 @@ SSH 密钥登录分为以下的步骤。
 
     l@l:~$ ecryptfs-setup-private
 
-如果出现下面错误：
+- 错误处理：
 
-    ERROR:  Cannot get ecryptfs version, ecryptfs kernel module not loaded?
+  如果出现下面错误：
 
-加载 ecryptfs 模块:
+      ERROR:  Cannot get ecryptfs version, ecryptfs kernel module not loaded?
 
-    l@l:~$ sudo modprobe ecryptfs
+  加载 ecryptfs 模块:
 
-然后再执行 ecryptfs-setup-private :
+      l@l:~$ sudo modprobe ecryptfs
 
-    l@l:~$ ecryptfs-setup-private
+  查看 ecryptfs 模块：
 
-它将要求输入登录密码和安装密码。登录密码与您的正常登录密码相同。安装密码用于生成文件加解密的主密钥。
-（安装密码由登录密码加密后保存在 ~/.ecryptfs/wrapped-passphrase 中。) 将其留空以自动随机生成一个密码，因为这样更安全。注销并重新登录。
+      l@l:~$ lsmod | grep ecryptfs
 
-您会注意到，eCryptFS 默认情况下创建了两个目录：您的主目录中的 Private 和 .Private。
-~/.Private目录包含加密数据，您可以在 ~/Private目录中访问相应的解密数据。
-当您登录时， ~/.Private目录会自动解密并映射到 ~/Private目录，以便您可以访问它。
-当您注销时， ~/Private 目录会自动卸载，并且 ~/Private 目录中的内容会加密回 ~/.Private 目录中。
+  然后再执行 ecryptfs-setup-private :
 
-eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 目录中，而无需您输入密码，这是通过 eCryptFS PAM 模块 来完成的。
+      l@l:~$ ecryptfs-setup-private
 
-如果您不希望在登录时自动挂载 ~/Private 目录，只需在运行 ecryptfs-setup-private 工具时添加 --noautomount 选项即可。
-同样，如果您不希望注销后自动卸载 ~/Private 目录，请指定 --noautoumount 选项。但是，您将必须自己手动挂载或卸载 ~/Private 目录：
+  在 fedora 下可能会出现下面错误：
+
+      fedora@fedora:~$ ecryptfs-setup-private 
+      ERROR:  User needs to be a member of ecryptfs group
+
+  执行下面命令或者编辑/etc/group 将当前用户加入到ecryptfs组。
+
+      sudo usermod -aG ecryptfs ${USER}
+
+它将要求输入登录密码和文件加密密钥(File Encryption Key, FEK)。
+登录密码与您的正常登录密码相同。
+文件加密密钥(File Encryption Key, FEK)用于生成文件加解密的主密钥。
+（FEK 由登录密码加密后保存在 ~/.ecryptfs/wrapped-passphrase 中。)
+将其留空以自动随机生成一个FEK，因为这样更安全。注销并重新登录。
+
+您会注意到，eCryptFS 默认情况下创建了两个目录：
+您的主目录中的 Private 和 .Private。
+\~/.Privat e目录包含加密数据，您可以在 \~/Private 目录中访问相应的解密数据。
+当您登录时，\~/.Private 目录会自动解密并映射到 \~/Private 目录，以便您可以访问它。
+当您注销时， \~/Private 目录会自动卸载，并且 \~/Private 目录中的内容会加密回 \~/.Private 目录中。
+
+eCryptFS 知道您拥有 \~/.Private 目录，并自动将其解密到 \~/Private 目录中，
+而无需您输入密码，这是通过 eCryptFS PAM 模块 来完成的。
+Ubuntu在安装时会自动安装（使用autoconfig)。
+Fedora用的autoselect，所以在安装后需要手动安装。参见后面的操作。
+
+如果您不希望在登录时自动挂载 \~/Private 目录，
+只需在运行 ecryptfs-setup-private 工具时添加 --noautomount 选项即可。
+同样，如果您不希望注销后自动卸载 \~/Private 目录，
+请指定 --noautoumount 选项。但是，您将必须自己手动挂载或卸载 \~/Private 目录：
 
     $ ecryptfs-mount-private ~/.Private ~/Private
     $ ecryptfs-umount-private ~/Private
@@ -226,12 +268,14 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
     mint@mint-H310M-BATTLE-GENERAL-D4-G10b:~/.ecryptfs$ ls
     auto-mount  auto-umount  Private.mnt  Private.sig  wrapped-passphrase
 
-- wrapped-passphrase：保存用于文件加解密的主密钥（此密钥被登录密码进行加密）
+- wrapped-passphrase：保存用于文件加密密钥(File Encryption Key, FEK)（此密钥被登录密码进行加密）
 - Private.mnt：保存 Private 的位置。默认为: ~/Private
+- auto-mount: 用于指示 eCryptFS 自动挂载
+- auto-umount: 用于指示 eCryptFS 自动卸载
 
 ### 查看是否加载
 
-    l@l:~$ mount |grep ecryptfs
+    l@l:~$ mount | grep ecryptfs
     /home/l/.Private on /home/l/Private type ecryptfs (rw,nosuid,nodev,relatime,ecryptfs_fnek_sig=ba1fd50362065a83,ecryptfs_sig=42f56088c83f3865,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_unlink_sigs)
 
 ### 多个操作系统多用户使用相同的 eCryptFS
@@ -253,9 +297,27 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
   - 修改当前用户密码与 ubuntu 用户的密码相同
 这样，就可以两操作系统使用相同的 eCryptFS 了。
 
+- 如果是 fedora ,则需要执行下面命令挂载 ecryptFS
+
+       ecryptfs-mount-private
+
+Fedora 从较新的版本开始，用 authselect 取代了旧的 authconfig。
+ecryptfs-utils 软件包在安装时，原本会调用旧的 authconfig 来启用 PAM 模块，
+但在新系统上这个步骤可能不会自动生效，导致 PAM 配置里没有相关条目。
+运行以下命令来启用对应的认证特性（前提是你的 authselect 配置支持）：
+
+    sudo authselect enable-feature with-ecryptfs
+
+启用后，可以检查 PAM 配置文件，确认模块是否已被添加。
+
+    grep ecryptfs /etc/pam.d/postlogin
+
+如果配置成功，你应该能看到类似 auth optional pam_ecryptfs.so unwrap 的行。
+这说明系统在用户登录时，会尝试用登录密码去解锁加密的挂载密码。
+
 ### 同一系统上，多用户使用相同的 eCryptFS
-国为 eCryptFs 加载 ~/.Private 后，就解密到 ~/Private 中。
-如果此户未注销，同时其它用户登录，因为其它用户有 ~/Private 的读写权限。
+国为 eCryptFs 加载 \~/.Private 后，就解密到 \~/Private 中。
+如果此户未注销，同时其它用户登录，因为其它用户有 \~/Private 的读写权限。
 那么其它用户就能使用它。
 
     ubuntu@ubuntu:~$ chmod 777 ~/Private
@@ -322,29 +384,28 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
       auth required pam_google_authenticator.so
 
 风险提示：修改此文件会影响所有认证方式（包括 sudo）。
-建议先在 common-auth 里使用 nullok 参数测试，或者确保你有 TTY 备用登录方式。
-并务必带上 nullok 参数：
+建议先使用 nullok 参数测试，或者确保你有 TTY 备用登录方式。
 
     auth required pam_google_authenticator.so nullok
 
 参见：[重置用户密码](#重置用户密码)
 
 - 生效
-保存后，注销当前用户或重启，再次登录时就会要求输入验证码。
 
-关键安全提醒
-备用码是生命线：生成的紧急备用码必须离线保存（写在纸上或存进离线密码管理器）。
-一旦手机丢失且没有备用码，你将无法登录系统。
+  保存后，注销当前用户或重启，再次登录时就会要求输入验证码。
 
-时间同步：TOTP 依赖时间。确保 Ubuntu 系统时间准确（timedatectl 查看），否则验证码会一直错误。
+  关键安全提醒
+  备用码是生命线：生成的紧急备用码必须离线保存（写在纸上或存进离线密码管理器）。
+  一旦手机丢失且没有备用码，你将无法登录系统。
+
+  时间同步：TOTP 依赖时间。确保 Ubuntu 系统时间准确（timedatectl 查看），否则验证码会一直错误。
 
 - 本地登录特有的风险与对策
-与 SSH 不同，本地物理机没有“另开一个 SSH 会话测试”的便利。你需要额外做两件事：
 
-第一，保留一个不受影响的 root 终端会话。 修改 common-auth 时，
-不要关闭当前已经用 sudo -i 或 su - 获得的 root shell。
-如果配置出错导致新登录全部失败，你还可以在这个已打开的会话里用 sudo nano 把配置改回去。
-
+  与 SSH 不同，本地物理机没有“另开一个 SSH 会话测试”的便利。你需要额外做件事：
+  保留一个不受影响的 root 终端会话。 修改 PAM 配置时，
+  不要关闭当前已经用 sudo -i 或 su - 获得的 root shell。
+  如果配置出错导致新登录全部失败，你还可以在这个已打开的会话里用 sudo nano 把配置改回去。
 
 ### 为SSH远程登录添加二次验证
 
@@ -361,42 +422,44 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
 
       vim /etc/ssh/sshd_config
 
-  - 确保以下配置生效（新版 Ubuntu 用 KbdInteractiveAuthentication 替代了 ChallengeResponseAuthentication）：
+  - 确保以下配置生效（新版 Ubuntu 用 KbdInteractiveAuthentication 替代了
+    ChallengeResponseAuthentication）：
   
         UsePAM yes
         KbdInteractiveAuthentication yes
 
-注意：如果你原本使用密钥登录且不想被动态码打断，需要确保 AuthenticationMethods 包含了 keyboard-interactive，
-或者暂时保留 PasswordAuthentication yes 来测试。
+注意：如果你原本使用密钥登录且不想被动态码打断，需要确保 AuthenticationMethods
+包含了 keyboard-interactive，或者暂时保留 PasswordAuthentication yes 来测试。
 
 - 重启并测试
 
       sudo systemctl restart ssh
 
-不要关闭当前窗口，新开一个终端尝试 SSH 连接。如果成功，系统会先询问密码，再询问 Verification code
+不要关闭当前窗口，新开一个终端尝试 SSH 连接。
+如果成功，系统会先询问密码，再询问 Verification code
 
 ## 重置用户密码
-### 恢复模式。 
-  - 进入 GRUB 菜单并选择恢复模式
 
-    重启电脑，在启动过程中长按 Shift 键（UEFI 机型可尝试反复按 Esc）调出 GRUB 菜单。
-选择 “Advanced options for Ubuntu”，然后选中带有 “(recovery mode)” 字样的内核版本并回车。
+### 恢复模式
 
-  - 获取可写权限并重置密码
+- 进入 GRUB 菜单并选择恢复模式
 
-    在恢复菜单中，选择 “root” 或 “Drop to root shell prompt” 进入 root 命令行。
+  重启电脑，在启动过程中长按 Shift 键（UEFI 机型可尝试反复按 Esc）调出 GRUB 菜单。
+  选择 “Advanced options for Ubuntu”，然后选中带有 “(recovery mode)” 字样的内核版本并回车。
+
+- 获取可写权限并重置密码
+  在恢复菜单中，选择 “root” 或 “Drop to root shell prompt” 进入 root 命令行。
 此时文件系统通常是只读的，需要先重新挂载为可写：
 
-        mount -o remount,rw /
+      mount -o remount,rw /
 
-  - 然后使用 passwd 命令重置你忘记密码的那个账户（将 你的用户名 替换为实际用户名）：
-  
-        passwd 你的用户名
+- 然后使用 passwd 命令重置你忘记密码的那个账户(将你的用户名替换为实际用户名):
+
+      passwd 你的用户名
 
     按提示输入两次新密码（输入时屏幕不会显示字符，这是正常的）。
-  - 重启生效
-    密码修改成功后，输入 reboot -f 强制重启，或者选择菜单中的 resume 正常引导。
-- Live USB 救援
+- 重启生效
+    密码修改成功后，输入 `reboot -f` 强制重启，或者选择菜单中的 `resume` 正常引导。
 
 ### Live USB 救援（如果恢复模式进不去或 GRUB 被锁）
 - 挂载原系统分区
@@ -420,7 +483,8 @@ eCryptFS 知道您拥有 ~/.Private 目录，并自动将其解密到 ~/Private 
 GRUB EFI 涉及的文件分散在两个关键位置，理解它们的职责是掌握原理的关键：
 
 EFI 系统分区（ESP，通常挂载在 /boot/efi）：这是 UEFI 固件能识别的 FAT32 分区。
-GRUB 的 EFI 可执行文件就放在这里，具体路径通常是 /boot/efi/EFI/<发行版名>/grubx64.efi（例如 ubuntu 或 redhat）。
+GRUB 的 EFI 可执行文件就放在这里，具体路径通常是 /boot/efi/EFI/<发行版名>/grubx64.efi
+（例如 ubuntu 或 redhat）。
 固件启动时，会读取 NVRAM 中的启动项，找到这个文件并运行它。
 
 系统的 /boot/grub/ 目录：这里存放的是 GRUB 的“大脑”。grubx64.efi 被加载后，
