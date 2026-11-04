@@ -369,7 +369,7 @@ ecryptfs-utils 软件包在安装时，原本会调用旧的 authconfig 来启�
   - 只有图形登录需要添加二次验证。根据使用的桌面，选择相应的 gdm (图形桌面管理器)
 
         sudo vim /etc/pam.d/gdm-password  # GNOME 桌面使用的 gdm
-        sudo vim /etc/pam.d/lightdm       # Cinnamon 桌面使用的 gdm
+        sudo vim /etc/pam.d/lightdm       # Cinnamon、 xfce 等桌面使用的 gdm
 
   - 只有 TTY 登录需要添加二次验证
 
@@ -394,11 +394,14 @@ ecryptfs-utils 软件包在安装时，原本会调用旧的 authconfig 来启�
 
   保存后，注销当前用户或重启，再次登录时就会要求输入验证码。
 
-  关键安全提醒
-  备用码是生命线：生成的紧急备用码必须离线保存（写在纸上或存进离线密码管理器）。
-  一旦手机丢失且没有备用码，你将无法登录系统。
+  时间同步：TOTP 依赖时间。确保系统时间准确（timedatectl 查看），否则验证码会一直错误。
 
-  时间同步：TOTP 依赖时间。确保 Ubuntu 系统时间准确（timedatectl 查看），否则验证码会一直错误。
+  确认服务器时间同步状态，使用命令 `timedatectl status` 。
+  重点看 System clock synchronized: 是否为 yes。
+  如果不是，启用 NTP：`sudo timedatectl set-ntp true`
+
+      $ timedatectl status
+      $ sudo timedatectl set-ntp true
 
 - 本地登录特有的风险与对策
 
@@ -418,18 +421,46 @@ ecryptfs-utils 软件包在安装时，原本会调用旧的 authconfig 来启�
 
         auth required pam_google_authenticator.so
 
+    测试时，可以加上参数 nullok debug
+
+        auth required pam_google_authenticator.so nullok debug
+
+    在 Fedora 上使用，会出现登录失败，
+    原因是 SELinux 阻止了 sshd-session 进程在用户主目录中创建临时文件。
+    pam_google_authenticator 模块需要创建类似 .google_authenticator~setHxt
+    的临时文件来原子性地更新密钥文件（防止重放攻击），
+    但 SELinux 策略不允许 sshd_session_t 域写入 user_home_dir_t 类型的目录。
+    它需要有 `var_auth_t` 类型的目录。解决方法是：
+  
+        sudo mkdir -p /var/lib/google-authenticator
+        sudo restorecon -rv /var/lib/google-authenticator
+        # 查看 /var/lib/google-authenticator 的 SELinux 上下文。有`var_auth_t`
+        $ ls -ldZ /var/lib/google-authenticator
+        drwxr-xr-x. 2 fedora root unconfined_u:object_r:var_auth_t:s0 4096 Nov  3 22:06 /var/lib/google-authenticator
+        # 移动 .google-authenticator 到 /var/lib/google-authenticator
+        mv ~/.google-authenticator /var/lib/google-authenticator/.google-authenticator
+        # 查看 .google_authenticator 的文件权限
+        $ ls -la /var/lib/google-authenticator/.google_authenticator
+        -r--------.  1 fedora fedora  162 Nov  3 22:06 .google_authenticator
+        # 调整 PAM 配置中的 secret= 参数指向该文件。debug表示调试
+        auth required pam_google_authenticator.so nullok debug secret=/var/lib/google-authenticator/.google-authenticator
+
 - 编辑 SSH 主配置：
 
       vim /etc/ssh/sshd_config
 
-  - 确保以下配置生效（新版 Ubuntu 用 KbdInteractiveAuthentication 替代了
-    ChallengeResponseAuthentication）：
+  确保以下配置生效（新版 Ubuntu 用 KbdInteractiveAuthentication 替代了
+  ChallengeResponseAuthentication）：
   
-        UsePAM yes
-        KbdInteractiveAuthentication yes
+      UsePAM yes
+      KbdInteractiveAuthentication yes
 
-注意：如果你原本使用密钥登录且不想被动态码打断，需要确保 AuthenticationMethods
-包含了 keyboard-interactive，或者暂时保留 PasswordAuthentication yes 来测试。
+  检查其它文件是否包含了它们：
+
+      sudo grep -r "KbdInteractive\|ChallengeResponse\|AuthenticationMethods\|UsePAM" /etc/ssh/sshd_config.d/
+
+  如果发现任何文件中有 KbdInteractiveAuthentication no
+  或 ChallengeResponseAuthentication no 或 UsePAM no，需要将其改为 yes，或者删除/注释该行
 
 - 重启并测试
 
