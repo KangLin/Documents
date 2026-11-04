@@ -379,7 +379,7 @@ ecryptfs-utils 软件包在安装时，原本会调用旧的 authconfig 来启�
 
         sudo vim /etc/pam.d/sshd          # SSH 登录
 
-- 在文件末尾添加（注意顺序，通常加在 pam_unix.so 之后）：
+- 在文件末尾添加（注意顺序，通常加在 pam_unix.so 之后），也可以在文件开头（那么先验证码，再密码）：
 
       auth required pam_google_authenticator.so
 
