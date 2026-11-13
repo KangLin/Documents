@@ -369,7 +369,8 @@ ecryptfs-utils 软件包在安装时，原本会调用旧的 authconfig 来启�
   - 只有图形登录需要添加二次验证。根据使用的桌面，选择相应的 gdm (图形桌面管理器)
 
         sudo vim /etc/pam.d/gdm-password  # GNOME 桌面使用的 gdm
-        sudo vim /etc/pam.d/lightdm       # Cinnamon、 xfce 等桌面使用的 gdm
+        sudo vim /etc/pam.d/lightdm       # Cinnamon、 xfce 等桌面使用的 gdm 。它不能显示验证提示。但是可用。
+        sudo vim /etc/pam.d/sddm          # lxqt 使用的 gdm。暂时不支持。
 
   - 只有 TTY 登录需要添加二次验证
 
@@ -538,41 +539,88 @@ GRUB 的 EFI 可执行文件就放在这里，具体路径通常是 /boot/efi/EF
 
   Linux Live USB（比如 Ubuntu 安装盘）。用它启动电脑，选择“Try Ubuntu”（试用而不安装）进入桌面环境。
   - 确认 Live USB 以 UEFI 模式启动
-    在 Live 环境终端执行 ls /sys/firmware/efi，如果有输出，说明当前是 UEFI 模式，可以继续。
-    如果提示目录不存在，说明是以 Legacy BIOS 模式启动的，需要重启并在固件设置里调整启动模式。
-- 分区
+    - Ubuntu 系统
+
+      在 Live 环境终端执行 ls /sys/firmware/efi，如果有输出，说明当前是 UEFI 模式，可以继续。
+      如果提示目录不存在，说明是以 Legacy BIOS 模式启动的，需要重启并在固件设置里调整启动模式。
+
+    - Fedora 系统
+
+          $ [ -d /sys/firmware/efi ] && echo UEFI || echo BIOS
+
+      输出什么就是什么模式。
+
+- 安装操作
   - EFI 分区: /dev/sda1
   - 系统根分区: /dev/sda2
+  - 挂载分区
 
         # 先挂载系统根分区到 /mnt
         sudo mount /dev/sda2 /mnt
         # 挂载 EFI 分区到 /mnt/boot/efi
         sudo mount /dev/sda1 /mnt/boot/efi
-        
+
         # 挂载虚拟文件系统。为了让 chroot 环境能正常工作。
         sudo mount --bind /dev /mnt/dev
         sudo mount --bind /proc /mnt/proc
         sudo mount --bind /sys /mnt/sys
 
-        # 进入原系统环境
-        sudo chroot /mnt
-        
-        # 重装 GRUB
-        # 根据你的启动模式选择命令
-        # 如果是传统 BIOS（Legacy）模式:
-        grub-install /dev/sda
-        update-grub
-        
-        # 如果是 UEFI 模式:
-        grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu
-        update-grub
+  - 进入原系统环境文件系统
 
-        # 退出虚拟文件系统
+        sudo chroot /mnt
+
+  - 重装 GRUB。根据你的启动模式选择命令
+    - 如果是 UEFI 模式:
+      - Ubuntu 系统
+        - 安装 bootloader 文件
+
+              grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu
+
+        - 建立 grub 配置
+
+              update-grub
+
+      - Fedora 系统
+        - 安装 bootloader 文件
+
+              sudo dnf reinstall grub2-efi grub2-efi-modules shim-\*
+
+        - 建立 grub 配置
+
+              sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+     - 如果是传统 BIOS（Legacy）模式:
+       - Ubuntu 系统
+          - 安装引导文件
+      
+                grub-install /dev/sda
+                
+          - 建立 grub 配置
+        
+                update-grub
+
+       - Fedora 系统
+         - 安装引导文件
+       
+               sudo grub2-install /dev/sda
+
+         - 建立 grub 配置
+
+               sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+  - 退出原系统环境文件系统
+  
         exit
 
+  - umount 分区
+  
         sudo umount -R /mnt
+
+  - 重启系统
+
         sudo reboot
 
+- [Fedora:The GRUB2 Bootloader – Installation and Configuration](https://docs.fedoraproject.org/en-US/quick-docs/grub2-bootloader/)
 - 可能遇到的报错与处理
 
 如果 grub-install 报告 EFI 分区是只读的，可以先退出 chroot，
